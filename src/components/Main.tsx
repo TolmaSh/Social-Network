@@ -1,5 +1,6 @@
 import banner from "../assets/social-banner.jpg";
 import React from "react";
+import Accordion from "./Accordion";
 
 function Main() {
     return (
@@ -16,19 +17,8 @@ function Main() {
             <div className="content">
                 <img src={banner} alt="banner"/>
                 <div>
-                    avatar + description
-                </div>
-                <div>
-                    MyPosts
-                </div>
-                <div>
-                    New Post
-                </div>
-                <div>
-                    FirstPost
-                </div>
-                <div>
-                    SecondPost
+                    <Accordion titleValue={"Hello, Anatoliy"} accordionNum={1} collapsed={true}/>
+                    <Accordion titleValue={"Hello, Sergey"} accordionNum={2} collapsed={false}/>
                 </div>
             </div>
         </main>
