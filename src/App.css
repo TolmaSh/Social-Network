@@ -1,38 +1,10 @@
 .wrapper {
+    position: relative;
     display: flex;
-    max-width: 1440px;
-    min-height: 100%;
-    margin: 0 auto;
     flex-direction: column;
-    gap: 10px;
-}
-.header {
-    width: 100%;
-    background-color: lawngreen;
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
-    border-radius: 15px;
-    flex: 0 0 auto;
-}
-.logo {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 15px;
-}
-.main {
-    flex: 1 0 auto;
-    display: grid;
-    grid-template-columns: 150px 1fr;
-    gap: 20px;
-}
-.sidebar {
-    background-color: lawngreen;
-    border-radius: 15px;
-}
-.footer {
-    width: 100%;
-    background-color: lawngreen;
-    flex: 0 0 auto;
+    min-height: 100vh;
+    overflow: hidden;
+    opacity: 1;
+    transition: all .25s ease-in;
+    z-index: 1;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import s from "./Accordion.module.css";
 
 type AccordionPropsType = {
     titleValue: string,

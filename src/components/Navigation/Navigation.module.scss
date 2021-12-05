@@ -1,0 +1,11 @@
+
+.navigation {
+    position: fixed;
+    top: 0;
+    flex-shrink: 0;
+    width: 280px;
+    height: 100vh;
+    overflow: hidden;
+    background: 0 0;
+    padding-top: calc(90px + 6px);
+}
