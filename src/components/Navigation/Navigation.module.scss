@@ -2,10 +2,45 @@
 .navigation {
     position: fixed;
     top: 0;
-    flex-shrink: 0;
-    width: 280px;
+    grid-area: navigation;
     height: 100vh;
-    overflow: hidden;
     background: 0 0;
     padding-top: calc(90px + 6px);
+    .content {
+        width: 240px;
+        transition: all .2s ease;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 0 10px 10px 0;
+    }
+    .item {
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 8px 30px rgba(0,0,0,.05);
+        padding: 12px 15px 12px 15px;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 28px;
+        white-space: nowrap;
+        color: #888;
+        margin: 8px 0;
+    }
+    .title {
+        font-weight: 600;
+        color: #adb5bd;
+        font-size: 12px;
+        margin-bottom: 5px;
+        padding-left: 25px;
+        white-space: nowrap;
+        transition: padding .25s;
+    }
+    .list {
+        display: flex;
+        flex-direction: column;
+        &_item {
+            list-style-image: none;
+            list-style-type: none;
+            margin: 1px 5px;
+        }
+    }
 }

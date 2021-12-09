@@ -1,21 +1,17 @@
 import React from "react";
 import banner from "../../assets/social-banner.jpg";
-import Accordion from "./Accordion/Accordion";
 import s from "./Main.module.scss"
+import {Profile} from "./Profile/Profile";
 
-function Main() {
+export const Main = () => {
     return (
         <main className={s.main}>
-
             <div className={s.content}>
                 <img src={banner} alt="banner"/>
                 <div>
-                    <Accordion titleValue={"Hello, Anatoliy"} accordionNum={1} collapsed={true}/>
-                    <Accordion titleValue={"Hello, Sergey"} accordionNum={2} collapsed={false}/>
+                    <Profile/>
                 </div>
             </div>
         </main>
     );
 }
-
-export default Main;

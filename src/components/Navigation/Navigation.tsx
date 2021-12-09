@@ -3,16 +3,41 @@ import s from "./Navigation.module.scss";
 
 
 
-function Navigation() {
+export const Navigation = () => {
     return  <nav className={s.navigation}>
-        <ul>
-            <li>Home</li>
-            <li>Message</li>
-            <li>Gallery</li>
-            <li>Settings</li>
-            <li>Logout</li>
-        </ul>
+
+        <div className={s.content}>
+            <div className={s.item}>
+                <h2 className={s.title}>
+                    New Feeds
+                </h2>
+                <ul className={s.list}>
+                    <ListItem item={"Home"}/>
+                    <ListItem item={"Message"}/>
+                    <ListItem item={"Gallery"}/>
+                    <ListItem item={"Settings"}/>
+                    <ListItem item={"Logout"}/>
+                </ul>
+            </div>
+            <div className={s.item}>
+                <h2 className={s.title}>
+                    Account
+                </h2>
+                <ul className={s.list}>
+                    <ListItem item={"Home"}/>
+                    <ListItem item={"Message"}/>
+                    <ListItem item={"Gallery"}/>
+                    <ListItem item={"Settings"}/>
+                    <ListItem item={"Logout"}/>
+                </ul>
+            </div>
+        </div>
     </nav>
 }
 
-export default Navigation;
+type itemPropsType = {
+    item: string
+}
+function ListItem(props: itemPropsType) {
+    return <li className={s.list_item}>{props.item}</li>
+}

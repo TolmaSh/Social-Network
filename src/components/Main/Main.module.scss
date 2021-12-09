@@ -1,8 +1,10 @@
 .main {
-  flex-grow: 1;
-  padding-top: 90px;
-  padding-left: 280px;
-  padding-right: 290px;
+  grid-area: main;
   transition: all .25s;
   background-color: #fbfcfe;
+  margin-top: 20px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
 }

@@ -1,14 +1,20 @@
-import logo from "../../assets/logo.png";
-import React from "react";
-import s from "./Header.module.css";
 
-function Header() {
+import React from "react";
+import s from "./Header.module.scss";
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
+
+export const Header = () => {
     return (
         <header className={s.header}>
-            <img className={s.logo} src={logo} alt="logo"/>
-            <span>Header</span>
+            <a className={s.logo} href="#">
+                <ConnectWithoutContactIcon
+                    fontSize="inherit"
+                    color="inherit"
+                />
+                <span className={s.logo_name}>SocialNetwork</span>
+            </a>
+
         </header>
     );
 }
 
-export default Header;
