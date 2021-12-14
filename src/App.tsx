@@ -12,7 +12,6 @@ function App() {
                 <Header/>
                 <Navigation/>
                 <Main/>
-
             </div>
         </BrowserRouter>
     );

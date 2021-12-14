@@ -13,9 +13,9 @@ export const Navigation = () => {
                 </h2>
                 <ul className={s.list}>
                     <ListItem item={"Home"} way={"/"}/>
-                    <ListItem item={"Message"} way={"/Profile"}/>
-                    <ListItem item={"Gallery"} way={"/"}/>
-                    <ListItem item={"Settings"} way={"/"}/>
+                    <ListItem item={"Messages"} way={"/Messages"}/>
+                    <ListItem item={"Gallery"} way={"/Gallery"}/>
+                    <ListItem item={"Settings"} way={"/Settings"}/>
                     <ListItem item={"Logout"} way={"/"}/>
                 </ul>
             </div>
