@@ -7,8 +7,8 @@ import {ProfilePosts} from "./ProfilePosts/ProfilePosts";
 export const Profile = () => {
     return (
         <div className={s.wrapper}>
-        <User/>
-        <ProfilePosts/>
+            <User/>
+            <ProfilePosts/>
         </div>
     )
 }
