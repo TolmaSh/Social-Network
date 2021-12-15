@@ -28,9 +28,10 @@ export const Navigation = () => {
 type itemPropsType = {
     item: string
     way: string
+
 }
 function ListItem(props: itemPropsType) {
     return <li className={s.list_item}>
-        <NavLink to={props.way}>{props.item}</NavLink>
+        <NavLink to={props.way} className={ ({isActive})  => isActive ? `${s.active}` : `${s.list_item}`}>{props.item}</NavLink>
     </li>
 }

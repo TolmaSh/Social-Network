@@ -46,6 +46,8 @@
       list-style-image: none;
       list-style-type: none;
       margin: 1px 5px;
+      text-decoration: none;
+      color: inherit;
 
       &:last-child {
         margin-top: 25px;
@@ -53,4 +55,7 @@
     }
 
   }
+}
+.active {
+  background-color: red;
 }
