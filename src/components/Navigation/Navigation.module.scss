@@ -41,11 +41,15 @@
   .list {
     display: flex;
     flex-direction: column;
-
+    li {
+      padding: 0;
+    }
     &_item {
+      width: 100%;
       list-style-image: none;
       list-style-type: none;
       margin: 1px 5px;
+      padding: 0;
       text-decoration: none;
       color: inherit;
 
@@ -53,9 +57,12 @@
         margin-top: 25px;
       }
     }
+    &_btn {
+      padding: 0;
+    }
 
   }
 }
 .active {
-  background-color: red;
+  //background-color: red;
 }

@@ -1,0 +1,13 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+}
+.list {
+  &_item {
+    color: #9d9d9d;
+    text-decoration: none;
+  }
+}
+.active {
+  color: #525252;
+}
