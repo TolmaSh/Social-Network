@@ -2,6 +2,9 @@
   display: grid;
   grid-template-columns: 150px 1fr;
 }
+.users {
+  border-right: 1px solid grey;
+}
 .list {
   &_item {
     color: #9d9d9d;

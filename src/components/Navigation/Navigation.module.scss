@@ -52,7 +52,9 @@
       padding: 0;
       text-decoration: none;
       color: inherit;
-
+    &.active {
+      color: #525252;
+    }
       &:last-child {
         margin-top: 25px;
       }
@@ -62,7 +64,4 @@
     }
 
   }
-}
-.active {
-  //background-color: red;
 }
