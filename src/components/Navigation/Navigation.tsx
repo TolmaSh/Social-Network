@@ -1,13 +1,14 @@
 import React from "react";
 import s from "./Navigation.module.scss";
 import HomeWorkIcon from '@mui/icons-material/HomeWork';
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import List from "@mui/material/List";
 import {ListItem, ListItemButton} from "@mui/material";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import deepOrange from "@mui/material/colors/deepOrange";
 import ListItemText from "@mui/material/ListItemText";
+
 type navListType = {
     id: number
     item: string
@@ -20,6 +21,7 @@ const navList: Array<navListType> = [
     {id: 3, item: 'Settings', way: '/Settings'},
     {id: 4, item: 'Logout', way: '/logout'},
 ]
+
 export const Navigation = () => {
     return <nav className={s.navigation}>
 
@@ -28,12 +30,12 @@ export const Navigation = () => {
                 <h2 className={s.title}>
                     New Feeds
                 </h2>
-                {/*<ul className={s.list}>*/}
-                    <List className={s.list}>
-                        {navList.map((val) => {
-                            return (
-                                <ListItem>
-                                    <NavLink to={val.way} className={ ({isActive})  => isActive ? `${s.list_item} ${s.active}` : `${s.list_item}`}>
+                <List className={s.list}>
+                    {navList.map((val) => {
+                        return (
+                            <ListItem>
+                                <NavLink to={val.way}
+                                         className={({isActive}) => isActive ? `${s.list_item} ${s.active}` : `${s.list_item}`}>
                                     <ListItemButton className={s.list_btn}>
                                         <ListItemAvatar>
                                             <Avatar sx={{bgcolor: deepOrange[500]}}>
@@ -44,30 +46,12 @@ export const Navigation = () => {
                                             primary={val.item}
                                         />
                                     </ListItemButton>
-                                    </NavLink>
-                                </ListItem> );
-                        })}
-                    </List>
-                    {/*<ListItem item={"Home"} way={"/"}/>*/}
-                    {/*<ListItem item={"Messages"} way={"/Messages"}/>*/}
-                    {/*<ListItem item={"Gallery"} way={"/Gallery"}/>*/}
-                    {/*<ListItem item={"Settings"} way={"/Settings"}/>*/}
-                    {/*<ListItem item={"Logout"} way={"/"}/>*/}
-                {/*</ul>*/}
+                                </NavLink>
+                            </ListItem>);
+                    })}
+                </List>
             </div>
-
         </div>
     </nav>;
 
 }
-
-// type itemPropsType = {
-//     item: string
-//     way: string
-//
-// }
-// function Link(props: itemPropsType) {
-//     return <li className={s.list_item}>
-//         {props.item}
-//     </li>
-// }
