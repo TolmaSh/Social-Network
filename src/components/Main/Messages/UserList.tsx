@@ -1,5 +1,5 @@
 import React from "react";
-import {userListType} from "./Messages";
+import {userListType} from "../../../App";
 import {NavLink} from "react-router-dom";
 import s from "./Messages.module.scss";
 import {ListItemButton} from "@mui/material";
@@ -13,7 +13,7 @@ import ListItem from "@mui/material/ListItem";
 type userType = {
     data: userListType
 }
-export const User = (props: userType) => {
+export const UserList = (props: userType) => {
     const path = `/Messages/${props.data.key}`;
     return (
         <ListItem>

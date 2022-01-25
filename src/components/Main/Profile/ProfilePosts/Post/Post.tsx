@@ -1,5 +1,4 @@
 import React from 'react'
-import s from "./Post.module.scss"
 
 type PostPropsType = {
     postText: string

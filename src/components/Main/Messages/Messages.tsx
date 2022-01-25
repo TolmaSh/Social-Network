@@ -3,38 +3,18 @@ import s from "./Messages.module.scss"
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Grid from '@mui/material/Grid';
-import {User} from "./User";
+import {UserList} from "./UserList";
+import {messageListType, userListType} from "../../../App";
 
 
-export type userListType = {
-    key: number
-    name: string
-    avatar: string
+type MessagesPropsType = {
+    userList: userListType[]
+    messageList: messageListType[]
 }
-const userList: Array<userListType> = [
-    {key: 0, name: 'Anatoly', avatar: ''},
-    {key: 1, name: 'Sveta', avatar: ''},
-    {key: 2, name: 'Sergey', avatar: ''},
-    {key: 3, name: 'Kolya', avatar: ''}
 
-]
-type messageListType = {
-    key: number
-    item: string
-}
-const messageList: Array<messageListType> = [
-    {key: 0, item: "Hi , how are you?"},
-    {key: 2, item: "Hey, i`m fine thank`s. What about your?"},
-    {key: 3, item: "I`m fine too. What day is today?"},
-    {key: 4, item: "Today is monday."},
-    {key: 5, item: "Ohhh , it`s so bad."},
-    {key: 6, item: "Yessss)"}
-]
-
-
-export const Messages = () => {
+export const Messages: React.FC<MessagesPropsType> = ({userList,messageList}) => {
     const mappedUsers = userList.map((u: userListType) => (
-        <User
+        <UserList
             key={u.key} // кеи ОБЯЗАТЕЛЬНЫ в 99% - так что лучше их писать всегда при создании компонент в мапе
             data={u}
         />
