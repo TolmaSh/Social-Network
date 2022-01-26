@@ -4,7 +4,7 @@ import {Header} from "./components/Header/Header";
 import {Main} from "./components/Main/Main";
 import {Navigation} from "./components/Navigation/Navigation";
 import {HashRouter} from "react-router-dom";
-import {state, addPost} from './store/state'
+import {stateType} from './store/state'
 
 
 export type userDataType = {
@@ -24,15 +24,20 @@ const usersData = {
     website: "google.com"
 }
 
-
-function App() {
+type AppPropsType = {
+    state: stateType
+    addPost: (message: string) => void
+    newPost: string
+    changeNewPost: (newPostText: string) => void
+}
+function App({changeNewPost,state,newPost,addPost}:AppPropsType) {
 
     return (
         <HashRouter>
             <div className="wrapper">
                 <Header/>
                 <Navigation/>
-                <Main usersData={usersData} state={state} addPost={addPost} />
+                <Main usersData={usersData} state={state} addPost={addPost} newPost={newPost} changeNewPost={changeNewPost}/>
             </div>
         </HashRouter>
     );

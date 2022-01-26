@@ -15,14 +15,17 @@ type MainPropsType = {
     state: stateType
     usersData: userDataType
     addPost: (message: string) => void
+    newPost: string
+    changeNewPost: (newPostText: string) => void
 }
 
-export const Main: React.FC<MainPropsType> = ({addPost,state, usersData}) => {
+export const Main: React.FC<MainPropsType> = ({changeNewPost, newPost, addPost, state, usersData}) => {
     return (
         <main className={s.main}>
             <div className={s.content}>
                 <Routes>
-                    <Route path="/" element={<Profile usersData={usersData} postList={state.profilePage.postList} addPost={addPost}/>}/>
+                    <Route path="/" element={<Profile usersData={usersData} postList={state.profilePage.postList}
+                                                      addPost={addPost} newPost={newPost} changeNewPost={changeNewPost}/>}/>
                     <Route path="/Messages/*"
                            element={<Messages userList={state.dialogsPage.userList}
                                               messageList={state.dialogsPage.messageList}/>}/>

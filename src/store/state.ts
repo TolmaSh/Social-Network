@@ -1,3 +1,5 @@
+import {RenderThree} from "../RenderThree";
+
 export type userListType = {
     key: number
     name: string
@@ -14,6 +16,7 @@ export type postType = {
 }
 
 type profilePageType = {
+    newPost: string
     postList: postType[]
 }
 type dialogsPage = {
@@ -27,7 +30,9 @@ export interface stateType {
 }
 
 export const state: stateType = {
+
     profilePage: {
+        newPost: '',
         postList: [
             {id: 1, message: 'Hi, how are you?', likesCount: 12},
             {id: 2, message: 'I`m fine , thank you. What about you?', likesCount: 9},
@@ -58,7 +63,13 @@ export const addPost = (message: string) => {
     const newPost = {
         id: new Date().getTime(),
         message: message,
-        likesCount: 0}
+        likesCount: 0
+    }
     state.profilePage.postList.push(newPost)
+    RenderThree(state)
+}
+export const changeNewPost = (newPostText: string) => {
+    state.profilePage.newPost = newPostText
+    RenderThree(state)
 }
 

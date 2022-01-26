@@ -10,11 +10,13 @@ export const Profile: React.FC<{
     usersData: userDataType
     postList: postType[]
     addPost: (message: string) => void
-}> = ({addPost,postList,usersData}) => {
+    newPost: string
+    changeNewPost: (newPostText: string) => void
+}> = ({changeNewPost,newPost,addPost,postList,usersData}) => {
     return (
         <div className={s.wrapper}>
             <User usersData={usersData}/>
-            <ProfilePosts postList={postList} addPost={addPost}/>
+            <ProfilePosts postList={postList} addPost={addPost} newPost={newPost} changeNewPost={changeNewPost}/>
         </div>
     )
 }
