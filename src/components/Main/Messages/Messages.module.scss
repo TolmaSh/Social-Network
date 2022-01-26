@@ -11,6 +11,31 @@
     text-decoration: none;
   }
 }
+.message__list {
+  display: flex;
+  flex-direction: column;
+  width: clamp(200px,80%,800px);
+  &_item {
+    gap: 15px;
+    &:nth-child(2n) {
+      flex-direction: row-reverse;
+      .post {
+        border-radius: 20px 20px 0 20px;
+      }
+    }
+  }
+  &_item:nth-child(2n) {
+    flex-direction: row-reverse;
+    .post {
+      border-radius: 20px 20px 0 20px;
+    }
+  }
+}
 .active {
   color: #525252;
+}
+.post {
+  padding: 10px 80px 10px 20px;
+  background-color: rgba(187, 187, 187, 0.36);
+  border-radius: 20px 20px 20px 0;
 }

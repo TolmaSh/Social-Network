@@ -8,22 +8,24 @@ import {
 import {Messages} from "./Messages/Messages";
 import {Gallery} from "./Gallery/Gallery";
 import {Settings} from "./Settings/Settings";
-import {messageListType, userDataType, userListType} from "../../App";
+import {userDataType} from "../../App";
+import {stateType} from "../../store/state";
 
 type MainPropsType = {
-    userList: userListType[]
-    messageList: messageListType[]
+    state: stateType
     usersData: userDataType
+    addPost: (message: string) => void
 }
 
-export const Main: React.FC<MainPropsType> = ({userList, messageList, usersData}) => {
+export const Main: React.FC<MainPropsType> = ({addPost,state, usersData}) => {
     return (
         <main className={s.main}>
             <div className={s.content}>
                 <Routes>
-                    <Route path="/" element={<Profile usersData={usersData}/>}/>
+                    <Route path="/" element={<Profile usersData={usersData} postList={state.profilePage.postList} addPost={addPost}/>}/>
                     <Route path="/Messages/*"
-                           element={<Messages userList={userList} messageList={messageList} />}/>
+                           element={<Messages userList={state.dialogsPage.userList}
+                                              messageList={state.dialogsPage.messageList}/>}/>
                     <Route path="/Gallery" element={<Gallery/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
                 </Routes>

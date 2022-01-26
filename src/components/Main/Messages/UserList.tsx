@@ -1,5 +1,5 @@
 import React from "react";
-import {userListType} from "../../../App";
+
 import {NavLink} from "react-router-dom";
 import s from "./Messages.module.scss";
 import {ListItemButton} from "@mui/material";
@@ -9,6 +9,7 @@ import deepGreen from "@mui/material/colors/green";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
+import {userListType} from "../../../store/state";
 
 type userType = {
     data: userListType
