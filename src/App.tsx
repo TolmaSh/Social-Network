@@ -26,7 +26,7 @@ const usersData = {
 
 type AppPropsType = {
     state: stateType
-    addPost: (message: string) => void
+    addPost: () => void
     newPost: string
     changeNewPost: (newPostText: string) => void
 }

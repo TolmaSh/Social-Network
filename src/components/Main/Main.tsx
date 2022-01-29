@@ -14,7 +14,7 @@ import {stateType} from "../../store/state";
 type MainPropsType = {
     state: stateType
     usersData: userDataType
-    addPost: (message: string) => void
+    addPost: () => void
     newPost: string
     changeNewPost: (newPostText: string) => void
 }

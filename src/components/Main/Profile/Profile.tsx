@@ -9,7 +9,7 @@ import {postType} from "../../../store/state";
 export const Profile: React.FC<{
     usersData: userDataType
     postList: postType[]
-    addPost: (message: string) => void
+    addPost: () => void
     newPost: string
     changeNewPost: (newPostText: string) => void
 }> = ({changeNewPost,newPost,addPost,postList,usersData}) => {

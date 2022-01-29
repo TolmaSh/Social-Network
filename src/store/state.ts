@@ -58,14 +58,14 @@ export const state: stateType = {
         ]
     }
 }
-
-export const addPost = (message: string) => {
+export const addPost = () => {
     const newPost = {
         id: new Date().getTime(),
-        message: message,
+        message: state.profilePage.newPost,
         likesCount: 0
     }
     state.profilePage.postList.push(newPost)
+    state.profilePage.newPost = "";
     RenderThree(state)
 }
 export const changeNewPost = (newPostText: string) => {

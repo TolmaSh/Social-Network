@@ -48,7 +48,6 @@ export const Messages: React.FC<MessagesPropsType> = ({userList, messageList}) =
         />
     ))
     const mappedMessage = messageList.map((m: messageListType) => {
-        console.log(m.item)
         return (
             <ListItem key={m.key} className={s.message__list_item}>
                 <Avatar {...stringAvatar(m.item)}/>
