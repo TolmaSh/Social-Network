@@ -2,6 +2,7 @@ import React, {ChangeEvent} from "react";
 import s from "./ProfilePosts.module.scss"
 import {Post} from "./Post/Post";
 import {changeNewPost, postType} from "../../../../store/state";
+import {TextField} from "@mui/material";
 
 
 type ProfilePostsPropsType = {
@@ -29,6 +30,7 @@ export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({newPost, addPost,
         <div className={s.posts__wrapper}>
             <h2>My Posts</h2>
             <textarea value={newPost} onChange={(e) => onChangePostHandler(e)}/>
+            <TextField multiline label="Multiline Placeholder" />
             <button onClick={onClickAddPostHandler}>Add post</button>
             {mappedPosts}
         </div>
