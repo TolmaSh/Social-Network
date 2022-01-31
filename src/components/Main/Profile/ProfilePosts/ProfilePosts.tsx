@@ -1,8 +1,11 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import s from "./ProfilePosts.module.scss"
 import {Post} from "./Post/Post";
 import {changeNewPost, postType} from "../../../../store/state";
-import {TextField} from "@mui/material";
+import {Box, Button, TextField, Typography} from "@mui/material";
+import SendIcon from '@mui/icons-material/Send';
+import Grid from "@mui/material/Grid";
+import List from "@mui/material/List";
 
 
 type ProfilePostsPropsType = {
@@ -14,24 +17,37 @@ type ProfilePostsPropsType = {
 
 export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({newPost, addPost, postList}) => {
     const mappedPosts = postList.map((p: postType) => (
-        <Post
-            key={p.id} // кеи ОБЯЗАТЕЛЬНЫ в 99% - так что лучше их писать всегда при создании компонент в мапе
-            data={p}
-        />
+        <List sx={{ width: '100%', maxWidth: 460, bgcolor: 'background.paper' }}>
+            <Post
+                key={p.id} // кеи ОБЯЗАТЕЛЬНЫ в 99% - так что лучше их писать всегда при создании компонент в мапе
+                data={p}
+            />
+        </List>
+
     ))
 
     const onClickAddPostHandler = () => {
         addPost()
     }
-    const onChangePostHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const onChangePostHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         changeNewPost(e.currentTarget.value)
     }
     return (
         <div className={s.posts__wrapper}>
-            <h2>My Posts</h2>
-            <textarea value={newPost} onChange={(e) => onChangePostHandler(e)}/>
-            <TextField multiline label="Multiline Placeholder" />
-            <button onClick={onClickAddPostHandler}>Add post</button>
+            <Typography variant="h2" gutterBottom sx={{fontSize: 40}}> My Posts</Typography>
+            <Grid container spacing={1}>
+                <Grid item>
+                    <TextField value={newPost} onChange={onChangePostHandler} multiline label="Write new post" rows={2}/>
+                </Grid>
+                <Grid item sx={{ alignSelf: 'flex-end' }}>
+                    <Button  onClick={onClickAddPostHandler} variant="contained" endIcon={<SendIcon/>}>
+                        Send
+                    </Button>
+                </Grid>
+
+            </Grid>
+
+
             {mappedPosts}
         </div>
 
