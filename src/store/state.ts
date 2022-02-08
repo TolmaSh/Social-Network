@@ -1,4 +1,9 @@
-import {RenderThree} from "../RenderThree";
+export let onChange = () => {
+    console.log('render')
+}
+export const subscribe = (observer: () => void) => {
+    onChange = observer
+}
 
 export type userListType = {
     key: number
@@ -66,10 +71,10 @@ export const addPost = () => {
     }
     state.profilePage.postList.push(newPost)
     state.profilePage.newPost = "";
-    RenderThree(state)
+    onChange()
 }
 export const changeNewPost = (newPostText: string) => {
     state.profilePage.newPost = newPostText
-    RenderThree(state)
+    onChange()
 }
 

@@ -33,7 +33,7 @@ export const Navigation = () => {
                 <List className={s.list}>
                     {navList.map((val) => {
                         return (
-                            <ListItem>
+                            <ListItem key={val.id}>
                                 <NavLink to={val.way}
                                          className={({isActive}) => isActive ? `${s.list_item} ${s.active}` : `${s.list_item}`}>
                                     <ListItemButton className={s.list_btn}>
