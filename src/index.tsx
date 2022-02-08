@@ -2,13 +2,15 @@ import React from 'react';
 import reportWebVitals from './reportWebVitals';
 import ReactDOM from "react-dom";
 import App from "./App";
-import {addPost, changeNewPost, state, subscribe} from "./store/state";
+import {store} from "./store/state";
 
 
 export const RenderThree = () => {
+    const state = store.getState();
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state} addPost={addPost} newPost={state.profilePage.newPost} changeNewPost={changeNewPost}/>
+            <App state={state} addPost={store.addPost.bind(store)} newPost={state.profilePage.newPost}
+                 changeNewPost={store.changeNewPost.bind(store)}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
@@ -16,7 +18,7 @@ export const RenderThree = () => {
 
 
 RenderThree();
-subscribe(RenderThree)
+store.subscribe(RenderThree)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

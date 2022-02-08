@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./ProfilePosts.module.scss"
 import {Post} from "./Post/Post";
-import {changeNewPost, postType} from "../../../../store/state";
+import {postType} from "../../../../store/state";
 import {Button, TextField, Typography} from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import Grid from "@mui/material/Grid";
@@ -15,7 +15,7 @@ type ProfilePostsPropsType = {
     changeNewPost: (newPostText: string) => void
 }
 
-export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({newPost, addPost, postList}) => {
+export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({newPost, addPost, postList,changeNewPost}) => {
     const mappedPosts = postList.map((p: postType) => (
 
         <Post
