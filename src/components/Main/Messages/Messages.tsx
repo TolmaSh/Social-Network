@@ -5,7 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import Grid from '@mui/material/Grid';
 import {UserList} from "./UserList";
 import {messageListType, userListType} from "../../../store/state";
-import {Avatar} from "@mui/material";
+import {Avatar, Typography} from "@mui/material";
 
 
 type MessagesPropsType = {
@@ -51,7 +51,7 @@ export const Messages: React.FC<MessagesPropsType> = ({userList, messageList}) =
         return (
             <ListItem key={m.key} className={s.message__list_item}>
                 <Avatar {...stringAvatar(m.item)}/>
-                <span className={s.post}>{m.item}</span>
+                <Typography className={s.post} component='span'>{m.item}</Typography>
             </ListItem>
         )
     })

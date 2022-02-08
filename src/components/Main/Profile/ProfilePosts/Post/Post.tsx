@@ -11,11 +11,6 @@ type PostPropsType = {
 
 export const Post: React.FC<PostPropsType> = ({data}) => {
     return (
-        // <div>
-        //
-        //     <span>{data.message}</span>
-        //     <span> <b>Likes:</b>  {data.likesCount}</span>
-        // </div>
         <>
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
