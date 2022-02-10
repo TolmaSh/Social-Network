@@ -9,14 +9,13 @@ import {postType} from "../../../store/state";
 export const Profile: React.FC<{
     usersData: userDataType
     postList: postType[]
-    addPost: () => void
+    dispatch: (action: any) => void
     newPost: string
-    changeNewPost: (newPostText: string) => void
-}> = ({changeNewPost,newPost,addPost,postList,usersData}) => {
+}> = ({dispatch,newPost,postList,usersData}) => {
     return (
         <div className={s.wrapper}>
             <User usersData={usersData}/>
-            <ProfilePosts postList={postList} addPost={addPost} newPost={newPost} changeNewPost={changeNewPost}/>
+            <ProfilePosts postList={postList} dispatch={dispatch} newPost={newPost} />
         </div>
     )
 }

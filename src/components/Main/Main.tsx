@@ -14,18 +14,17 @@ import {stateType} from "../../store/state";
 type MainPropsType = {
     state: stateType
     usersData: userDataType
-    addPost: () => void
     newPost: string
-    changeNewPost: (newPostText: string) => void
+    dispatch: (action: any) => void
 }
 
-export const Main: React.FC<MainPropsType> = ({changeNewPost, newPost, addPost, state, usersData}) => {
+export const Main: React.FC<MainPropsType> = ({dispatch ,newPost,  state, usersData}) => {
     return (
         <main className={s.main}>
             <div className={s.content}>
                 <Routes>
                     <Route path="/" element={<Profile usersData={usersData} postList={state.profilePage.postList}
-                                                      addPost={addPost} newPost={newPost} changeNewPost={changeNewPost}/>}/>
+                                                      dispatch={dispatch} newPost={newPost}/>}/>
                     <Route path="/Messages/*"
                            element={<Messages userList={state.dialogsPage.userList}
                                               messageList={state.dialogsPage.messageList}/>}/>

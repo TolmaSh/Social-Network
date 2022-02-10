@@ -26,20 +26,18 @@ const usersData = {
 
 type AppPropsType = {
     state: stateType
-    addPost: () => void
+    dispatch: (action: any) => void
     newPost: string
-    changeNewPost: (newPostText: string) => void
 }
 
-function App({changeNewPost, state, newPost, addPost}: AppPropsType) {
+function App({dispatch, state, newPost}: AppPropsType) {
 
     return (
         <HashRouter>
             <div className="wrapper">
                 <Header/>
                 <Navigation/>
-                <Main usersData={usersData} state={state} addPost={addPost} newPost={newPost}
-                      changeNewPost={changeNewPost}/>
+                <Main usersData={usersData} state={state} dispatch={dispatch} newPost={newPost}/>
             </div>
         </HashRouter>
     );

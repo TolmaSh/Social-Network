@@ -1,4 +1,3 @@
-
 export type userListType = {
     key: number
     name: string
@@ -23,18 +22,16 @@ type dialogsPage = {
     messageList: messageListType[]
 }
 
-export type stateType =  {
+export type stateType = {
     profilePage: profilePageType
     dialogsPage: dialogsPage
 }
-
 export interface storeType {
     _state: stateType
     getState: () => stateType
-    addPost: () => void
-    changeNewPost: (newPostText: string) => void
     _callSubscriber: () => void
     subscribe: (observer: () => void) => void
+    dispatch: (action: any) => void
 
 }
 
@@ -67,26 +64,29 @@ export const store: storeType = {
             ]
         }
     },
-    getState() {return this._state},
+    getState() {
+        return this._state
+    },
     _callSubscriber() {
         console.log('render')
     },
-    addPost() {
-        const newPost = {
-            id: new Date().getTime(),
-            message: this._state.profilePage.newPost,
-            likesCount: 0
-        }
-        this._state.profilePage.postList.push(newPost)
-        this._state.profilePage.newPost = "";
-        this._callSubscriber()
-    },
-    changeNewPost(newPostText: string)  {
-        this._state.profilePage.newPost = newPostText
-        this._callSubscriber()
-    },
     subscribe(observer) {
         this._callSubscriber = observer
+    },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            const newPost = {
+                id: new Date().getTime(),
+                message: this._state.profilePage.newPost,
+                likesCount: 0
+            }
+            this._state.profilePage.postList.push(newPost)
+            this._state.profilePage.newPost = "";
+            this._callSubscriber()
+        } else if ( action.type === 'UPDATE-POST') {
+            this._state.profilePage.newPost = action.newPostText
+            this._callSubscriber()
+        }
     },
 }
 

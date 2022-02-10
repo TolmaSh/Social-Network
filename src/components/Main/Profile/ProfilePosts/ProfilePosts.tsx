@@ -10,12 +10,11 @@ import List from "@mui/material/List";
 
 type ProfilePostsPropsType = {
     postList: postType[]
-    addPost: () => void
+    dispatch: (action: any) => void
     newPost: string
-    changeNewPost: (newPostText: string) => void
 }
 
-export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({newPost, addPost, postList,changeNewPost}) => {
+export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({dispatch ,newPost,  postList}) => {
     const mappedPosts = postList.map((p: postType) => (
 
         <Post
@@ -27,10 +26,10 @@ export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({newPost, addPost,
     ))
 
     const onClickAddPostHandler = () => {
-        addPost()
+        dispatch({type: 'ADD-POST'})
     }
     const onChangePostHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        changeNewPost(e.currentTarget.value)
+        dispatch({type: 'UPDATE-POST', newPostText: e.currentTarget.value})
     }
     return (
         <div className={s.posts__wrapper}>
