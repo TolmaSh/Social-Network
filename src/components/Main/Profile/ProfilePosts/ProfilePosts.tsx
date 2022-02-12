@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./ProfilePosts.module.scss"
 import {Post} from "./Post/Post";
-import {postType} from "../../../../store/state";
+import {ActionTypes, postType} from "../../../../store/state";
 import {Button, TextField, Typography} from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import Grid from "@mui/material/Grid";
@@ -10,7 +10,7 @@ import List from "@mui/material/List";
 
 type ProfilePostsPropsType = {
     postList: postType[]
-    dispatch: (action: any) => void
+    dispatch: (action: ActionTypes) => void
     newPost: string
 }
 

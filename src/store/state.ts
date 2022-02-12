@@ -26,12 +26,25 @@ export type stateType = {
     profilePage: profilePageType
     dialogsPage: dialogsPage
 }
+
+type AddPostActionType = ReturnType<typeof addPostAC>
+type UpdatePostActionType = ReturnType<typeof updatePostAC>
+export type ActionTypes = AddPostActionType | UpdatePostActionType
+
+export const addPostAC =  () => ({type: 'ADD-POST'} as const)
+export const updatePostAC = (newPostText: string) => {
+    return {
+        type: 'UPDATE-POST',
+        payload: {newPostText}
+    } as const
+}
+
 export interface storeType {
     _state: stateType
     getState: () => stateType
     _callSubscriber: () => void
     subscribe: (observer: () => void) => void
-    dispatch: (action: any) => void
+    dispatch: (action: ActionTypes) => void
 
 }
 
@@ -84,7 +97,7 @@ export const store: storeType = {
             this._state.profilePage.newPost = "";
             this._callSubscriber()
         } else if ( action.type === 'UPDATE-POST') {
-            this._state.profilePage.newPost = action.newPostText
+            this._state.profilePage.newPost = action.payload.newPostText
             this._callSubscriber()
         }
     },

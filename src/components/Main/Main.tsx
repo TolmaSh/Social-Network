@@ -9,13 +9,13 @@ import {Messages} from "./Messages/Messages";
 import {Gallery} from "./Gallery/Gallery";
 import {Settings} from "./Settings/Settings";
 import {userDataType} from "../../App";
-import {stateType} from "../../store/state";
+import {ActionTypes, stateType} from "../../store/state";
 
 type MainPropsType = {
     state: stateType
     usersData: userDataType
     newPost: string
-    dispatch: (action: any) => void
+    dispatch: (action: ActionTypes) => void
 }
 
 export const Main: React.FC<MainPropsType> = ({dispatch ,newPost,  state, usersData}) => {
