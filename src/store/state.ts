@@ -20,6 +20,7 @@ type profilePageType = {
 type dialogsPage = {
     userList: userListType[]
     messageList: messageListType[]
+    newMessageText: string
 }
 
 export type stateType = {
@@ -28,14 +29,31 @@ export type stateType = {
 }
 
 type AddPostActionType = ReturnType<typeof addPostAC>
-type UpdatePostActionType = ReturnType<typeof updatePostAC>
-export type ActionTypes = AddPostActionType | UpdatePostActionType
+type UpdatePostActionType = ReturnType<typeof updatePostTextAC>
+type AddMessageActionType = ReturnType<typeof addMessageAC>
+type UpdateMessageTextActionType = ReturnType<typeof updateMessageText>
+export type ActionTypes = AddPostActionType
+    | UpdatePostActionType
+    | AddMessageActionType
+    | UpdateMessageTextActionType
 
-export const addPostAC =  () => ({type: 'ADD-POST'} as const)
-export const updatePostAC = (newPostText: string) => {
+export const addPostAC = () => ({type: 'ADD-POST'} as const)
+export const updatePostTextAC = (newPostText: string) => {
     return {
         type: 'UPDATE-POST',
         payload: {newPostText}
+    } as const
+}
+
+export const addMessageAC = () => {
+    return {
+        type: 'ADD-MESSAGE'
+    } as const
+}
+export const updateMessageText = (newMessageText: string) => {
+    return {
+        type: 'UPDATE-MESSAGE-TEXT',
+        payload: {newMessageText}
     } as const
 }
 
@@ -60,6 +78,7 @@ export const store: storeType = {
             ]
         },
         dialogsPage: {
+            newMessageText: '',
             userList: [
                 {key: 0, name: 'Anatoly', avatar: ''},
                 {key: 1, name: 'Sveta', avatar: ''},
@@ -96,8 +115,19 @@ export const store: storeType = {
             this._state.profilePage.postList.push(newPost)
             this._state.profilePage.newPost = "";
             this._callSubscriber()
-        } else if ( action.type === 'UPDATE-POST') {
+        } else if (action.type === 'UPDATE-POST') {
             this._state.profilePage.newPost = action.payload.newPostText
+            this._callSubscriber()
+        } else if (action.type === 'ADD-MESSAGE') {
+            const newMessage = {
+                key: new Date().getTime(),
+                item: this._state.dialogsPage.newMessageText,
+            }
+            this._state.dialogsPage.messageList.push(newMessage)
+            this._state.dialogsPage.newMessageText = "";
+            this._callSubscriber()
+        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessageText = action.payload.newMessageText
             this._callSubscriber()
         }
     },

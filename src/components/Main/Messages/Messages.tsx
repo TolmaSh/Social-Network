@@ -4,13 +4,16 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Grid from '@mui/material/Grid';
 import {UserList} from "./UserList";
-import {messageListType, userListType} from "../../../store/state";
-import {Avatar, Typography} from "@mui/material";
+import {ActionTypes, addMessageAC, messageListType, updateMessageText, userListType} from "../../../store/state";
+import {Avatar, Button, TextField, Typography} from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 
 
 type MessagesPropsType = {
     userList: userListType[]
     messageList: messageListType[]
+    newMessageText: string
+    dispatch: (action: ActionTypes) => void
 }
 function stringToColor(string: string) {
     let hash = 0;
@@ -40,7 +43,9 @@ function stringAvatar(name: string) {
     };
 }
 
-export const Messages: React.FC<MessagesPropsType> = ({userList, messageList}) => {
+
+
+export const Messages: React.FC<MessagesPropsType> = ({newMessageText,userList, messageList,dispatch}) => {
     const mappedUsers = userList.map((u: userListType) => (
         <UserList
             key={u.key} // кеи ОБЯЗАТЕЛЬНЫ в 99% - так что лучше их писать всегда при создании компонент в мапе
@@ -55,6 +60,12 @@ export const Messages: React.FC<MessagesPropsType> = ({userList, messageList}) =
             </ListItem>
         )
     })
+    const onClickAddMessage = () => {
+        dispatch(addMessageAC())
+    }
+    const onChangeNewMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(updateMessageText(e.currentTarget.value))
+    }
 
     return (
         <Grid container spacing={2}>
@@ -66,6 +77,11 @@ export const Messages: React.FC<MessagesPropsType> = ({userList, messageList}) =
             <Grid item xs={10}>
                 <List className={s.message__list}>
                     {mappedMessage}
+                    <TextField value={newMessageText} onChange={onChangeNewMessage} multiline label="Write new message"
+                               rows={2}/>
+                    <Button onClick={onClickAddMessage} variant="contained" endIcon={<SendIcon/>}>
+                        Send
+                    </Button>
                 </List>
             </Grid>
         </Grid>

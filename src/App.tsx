@@ -27,17 +27,16 @@ const usersData = {
 type AppPropsType = {
     state: stateType
     dispatch: (action: any) => void
-    newPost: string
 }
 
-function App({dispatch, state, newPost}: AppPropsType) {
+function App({dispatch, state}: AppPropsType) {
 
     return (
         <HashRouter>
             <div className="wrapper">
                 <Header/>
                 <Navigation/>
-                <Main usersData={usersData} state={state} dispatch={dispatch} newPost={newPost}/>
+                <Main usersData={usersData} state={state} dispatch={dispatch} newPost={state.profilePage.newPost}/>
             </div>
         </HashRouter>
     );

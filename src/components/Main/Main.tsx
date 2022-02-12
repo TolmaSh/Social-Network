@@ -27,7 +27,10 @@ export const Main: React.FC<MainPropsType> = ({dispatch ,newPost,  state, usersD
                                                       dispatch={dispatch} newPost={newPost}/>}/>
                     <Route path="/Messages/*"
                            element={<Messages userList={state.dialogsPage.userList}
-                                              messageList={state.dialogsPage.messageList}/>}/>
+                                              messageList={state.dialogsPage.messageList}
+                                              newMessageText={state.dialogsPage.newMessageText}
+                                              dispatch={dispatch}
+                           />}/>
                     <Route path="/Gallery" element={<Gallery/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
                 </Routes>

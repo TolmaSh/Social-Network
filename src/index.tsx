@@ -9,7 +9,7 @@ export const RenderThree = () => {
     const state = store.getState();
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state} dispatch={store.dispatch.bind(store)} newPost={state.profilePage.newPost}/>
+            <App state={state} dispatch={store.dispatch.bind(store)} />
         </React.StrictMode>,
         document.getElementById('root')
     );

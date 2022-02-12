@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./ProfilePosts.module.scss"
 import {Post} from "./Post/Post";
-import {ActionTypes, postType} from "../../../../store/state";
+import {ActionTypes, addPostAC, postType, updatePostTextAC} from "../../../../store/state";
 import {Button, TextField, Typography} from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import Grid from "@mui/material/Grid";
@@ -26,10 +26,10 @@ export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({dispatch ,newPost
     ))
 
     const onClickAddPostHandler = () => {
-        dispatch({type: 'ADD-POST'})
+        dispatch(addPostAC())
     }
     const onChangePostHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch({type: 'UPDATE-POST', newPostText: e.currentTarget.value})
+        dispatch(updatePostTextAC(e.currentTarget.value))
     }
     return (
         <div className={s.posts__wrapper}>
