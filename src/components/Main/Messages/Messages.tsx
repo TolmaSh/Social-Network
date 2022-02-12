@@ -5,7 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import Grid from '@mui/material/Grid';
 import {UserList} from "./UserList";
 import {ActionTypes, addMessageAC, messageListType, updateMessageText, userListType} from "../../../store/state";
-import {Avatar, Button, TextField, Typography} from "@mui/material";
+import {Avatar, Box, Button, TextField, Typography} from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
 
@@ -15,6 +15,7 @@ type MessagesPropsType = {
     newMessageText: string
     dispatch: (action: ActionTypes) => void
 }
+
 function stringToColor(string: string) {
     let hash = 0;
     let i;
@@ -34,6 +35,7 @@ function stringToColor(string: string) {
 
     return color;
 }
+
 function stringAvatar(name: string) {
     return {
         sx: {
@@ -44,8 +46,7 @@ function stringAvatar(name: string) {
 }
 
 
-
-export const Messages: React.FC<MessagesPropsType> = ({newMessageText,userList, messageList,dispatch}) => {
+export const Messages: React.FC<MessagesPropsType> = ({newMessageText, userList, messageList, dispatch}) => {
     const mappedUsers = userList.map((u: userListType) => (
         <UserList
             key={u.key} // кеи ОБЯЗАТЕЛЬНЫ в 99% - так что лучше их писать всегда при создании компонент в мапе
@@ -77,12 +78,15 @@ export const Messages: React.FC<MessagesPropsType> = ({newMessageText,userList, 
             <Grid item xs={10}>
                 <List className={s.message__list}>
                     {mappedMessage}
+                </List>
+                <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: '40px', maxWidth: '750px' }}>
+
                     <TextField value={newMessageText} onChange={onChangeNewMessage} multiline label="Write new message"
-                               rows={2}/>
-                    <Button onClick={onClickAddMessage} variant="contained" endIcon={<SendIcon/>}>
+                               rows={2} fullWidth variant='standard' />
+                    <Button className={s.sendMessage} size='large' onClick={onClickAddMessage} variant="outlined" endIcon={<SendIcon/>}>
                         Send
                     </Button>
-                </List>
+                </Box>
             </Grid>
         </Grid>
     )
