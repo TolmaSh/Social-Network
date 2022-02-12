@@ -2,7 +2,7 @@ import React from 'react'
 import {postType} from "../../../../../store/state";
 import {Divider, ListItem, ListItemAvatar, ListItemText, Typography} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
-
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 
 type PostPropsType = {
     key: number
@@ -18,7 +18,7 @@ export const Post: React.FC<PostPropsType> = ({data}) => {
                 </ListItemAvatar>
                 <ListItemText
                     secondary={
-                        <React.Fragment >
+                        <React.Fragment>
 
                             {data.message}
                             <Typography
@@ -27,7 +27,7 @@ export const Post: React.FC<PostPropsType> = ({data}) => {
                                 variant="body2"
                                 color="text.primary"
                             >
-                                Likes - {data.likesCount}
+                                <ThumbUpOutlinedIcon color="primary" fontSize='small'/> - {data.likesCount}
                             </Typography>
                         </React.Fragment>
                     }

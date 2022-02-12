@@ -5,7 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import Grid from '@mui/material/Grid';
 import {UserList} from "./UserList";
 import {ActionTypes, addMessageAC, messageListType, updateMessageText, userListType} from "../../../store/state";
-import {Avatar, Box, Button, TextField, Typography} from "@mui/material";
+import {Avatar, Box, Button, Divider, TextField, Typography} from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 
 
@@ -79,11 +79,27 @@ export const Messages: React.FC<MessagesPropsType> = ({newMessageText, userList,
                 <List className={s.message__list}>
                     {mappedMessage}
                 </List>
-                <Box sx={{ display: 'flex', alignItems: 'flex-end', gap: '40px', maxWidth: '750px' }}>
+                <Box sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    width: '700px',
+                    color: 'text.secondary',
+                    border: (theme) => `1px solid ${theme.palette.divider}`,
+                    borderRadius: 1,
+                    padding: '10px',
+                    '& svg': {
+                        m: 0.8,
+                    },
+                    '& hr': {
+                        mx: 0.8,
+                    },
+                }}>
 
                     <TextField value={newMessageText} onChange={onChangeNewMessage} multiline label="Write new message"
-                               rows={2} fullWidth variant='standard' />
-                    <Button className={s.sendMessage} size='large' onClick={onClickAddMessage} variant="outlined" endIcon={<SendIcon/>}>
+                               rows={2} fullWidth variant='standard'/>
+                    <Divider orientation="vertical" variant="middle" flexItem/>
+                    <Button className={s.sendMessage} size='large' onClick={onClickAddMessage} variant="outlined"
+                            endIcon={<SendIcon/>}>
                         Send
                     </Button>
                 </Box>

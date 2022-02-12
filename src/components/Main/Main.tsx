@@ -18,7 +18,7 @@ type MainPropsType = {
     dispatch: (action: ActionTypes) => void
 }
 
-export const Main: React.FC<MainPropsType> = ({dispatch ,newPost,  state, usersData}) => {
+export const Main: React.FC<MainPropsType> = ({dispatch, newPost, state, usersData}) => {
     return (
         <main className={s.main}>
             <div className={s.content}>

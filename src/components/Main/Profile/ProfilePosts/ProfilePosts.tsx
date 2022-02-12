@@ -2,7 +2,7 @@ import React from "react";
 import s from "./ProfilePosts.module.scss"
 import {Post} from "./Post/Post";
 import {ActionTypes, addPostAC, postType, updatePostTextAC} from "../../../../store/state";
-import {Button, TextField, Typography} from "@mui/material";
+import {Button, Card, TextField, Typography} from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
@@ -14,7 +14,7 @@ type ProfilePostsPropsType = {
     newPost: string
 }
 
-export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({dispatch ,newPost,  postList}) => {
+export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({dispatch, newPost, postList}) => {
     const mappedPosts = postList.map((p: postType) => (
 
         <Post
@@ -35,20 +35,25 @@ export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({dispatch ,newPost
         <div className={s.posts__wrapper}>
             <Typography variant="h2" gutterBottom sx={{fontSize: 40}}> My Posts</Typography>
             <Grid container spacing={1}>
-                <Grid item>
+                <Grid item xs={4}>
                     <TextField value={newPost} onChange={onChangePostHandler} multiline label="Write new post"
-                               rows={2}/>
-                </Grid>
-                <Grid item sx={{alignSelf: 'flex-end'}}>
-                    <Button onClick={onClickAddPostHandler} variant="contained" endIcon={<SendIcon/>}>
-                        Send
+                               rows={5} fullWidth/>
+                    <Button sx={{width: '100%'}} onClick={onClickAddPostHandler} variant="contained"
+                            endIcon={<SendIcon/>}>
+                        Publish
                     </Button>
+                </Grid>
+                <Grid item xs={8} sx={{alignSelf: 'flex-end'}}>
+                    <Card variant="outlined">
+                        <List sx={{width: '100%', maxWidth: '700px', bgcolor: 'background.paper'}}>
+                            {mappedPosts}
+                        </List>
+                    </Card>
+
                 </Grid>
 
             </Grid>
-            <List sx={{width: '100%', maxWidth: 460, bgcolor: 'background.paper'}}>
-                {mappedPosts}
-            </List>
+
         </div>
 
     )
