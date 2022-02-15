@@ -4,16 +4,18 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Grid from '@mui/material/Grid';
 import {UserList} from "./UserList";
-import {ActionTypes, addMessageAC, messageListType, updateMessageText, userListType} from "../../../store/state";
+import { messageListType, userListType} from "../../../store/state";
+
 import {Avatar, Box, Button, Divider, TextField, Typography} from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
+import {addMessageAC, updateMessageText, DialogsActionTypes} from "../../../store/dialogsReducer";
 
 
 type MessagesPropsType = {
     userList: userListType[]
     messageList: messageListType[]
     newMessageText: string
-    dispatch: (action: ActionTypes) => void
+    dispatch: (action: DialogsActionTypes) => void
 }
 
 function stringToColor(string: string) {

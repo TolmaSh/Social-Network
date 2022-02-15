@@ -1,3 +1,6 @@
+import {ProfileActionTypes, profileReducer} from "./profileReducer";
+import {DialogsActionTypes, dialogsReducer} from "./dialogsReducer";
+
 export type userListType = {
     key: number
     name: string
@@ -13,11 +16,11 @@ export type postType = {
     likesCount: number
 }
 
-type profilePageType = {
+export type profilePageType = {
     newPost: string
     postList: postType[]
 }
-type dialogsPage = {
+export type dialogsPage = {
     userList: userListType[]
     messageList: messageListType[]
     newMessageText: string
@@ -28,41 +31,14 @@ export type stateType = {
     dialogsPage: dialogsPage
 }
 
-type AddPostActionType = ReturnType<typeof addPostAC>
-type UpdatePostActionType = ReturnType<typeof updatePostTextAC>
-type AddMessageActionType = ReturnType<typeof addMessageAC>
-type UpdateMessageTextActionType = ReturnType<typeof updateMessageText>
-export type ActionTypes = AddPostActionType
-    | UpdatePostActionType
-    | AddMessageActionType
-    | UpdateMessageTextActionType
-
-export const addPostAC = () => ({type: 'ADD-POST'} as const)
-export const updatePostTextAC = (newPostText: string) => {
-    return {
-        type: 'UPDATE-POST',
-        payload: {newPostText}
-    } as const
-}
-
-export const addMessageAC = () => {
-    return {
-        type: 'ADD-MESSAGE'
-    } as const
-}
-export const updateMessageText = (newMessageText: string) => {
-    return {
-        type: 'UPDATE-MESSAGE-TEXT',
-        payload: {newMessageText}
-    } as const
-}
+export type ActionTypes = ProfileActionTypes | DialogsActionTypes
 
 export interface storeType {
     _state: stateType
     getState: () => stateType
     _callSubscriber: () => void
     subscribe: (observer: () => void) => void
-    dispatch: (action: ActionTypes) => void
+    dispatch: (action: any) => void
 
 }
 
@@ -106,30 +82,9 @@ export const store: storeType = {
         this._callSubscriber = observer
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost = {
-                id: new Date().getTime(),
-                message: this._state.profilePage.newPost,
-                likesCount: 0
-            }
-            this._state.profilePage.postList.push(newPost)
-            this._state.profilePage.newPost = "";
-            this._callSubscriber()
-        } else if (action.type === 'UPDATE-POST') {
-            this._state.profilePage.newPost = action.payload.newPostText
-            this._callSubscriber()
-        } else if (action.type === 'ADD-MESSAGE') {
-            const newMessage = {
-                key: new Date().getTime(),
-                item: this._state.dialogsPage.newMessageText,
-            }
-            this._state.dialogsPage.messageList.push(newMessage)
-            this._state.dialogsPage.newMessageText = "";
-            this._callSubscriber()
-        } else if (action.type === 'UPDATE-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.payload.newMessageText
-            this._callSubscriber()
-        }
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._callSubscriber()
     },
 }
 
