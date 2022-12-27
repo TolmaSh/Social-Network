@@ -4,7 +4,7 @@ import {Header} from "./components/Header/Header";
 import {Main} from "./components/Main/Main";
 import {Navigation} from "./components/Navigation/Navigation";
 import {HashRouter} from "react-router-dom";
-import {stateType} from './store/state'
+import {stateType} from './store/store'
 
 
 export type userDataType = {

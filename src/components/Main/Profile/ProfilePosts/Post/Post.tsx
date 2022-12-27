@@ -1,5 +1,5 @@
 import React from 'react'
-import {postType} from "../../../../../store/state";
+import {postType} from "../../../../../store/store";
 import {Divider, ListItem, ListItemAvatar, ListItemText, Typography} from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';

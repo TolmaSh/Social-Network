@@ -2,7 +2,7 @@ import React from 'react';
 import reportWebVitals from './reportWebVitals';
 import ReactDOM from "react-dom";
 import App from "./App";
-import {store} from "./store/state";
+import {store} from "./store/store";
 
 
 export const RenderThree = () => {

@@ -3,7 +3,7 @@ import s from "./Profile.module.scss"
 import {User} from "./User/User";
 import {ProfilePosts} from "./ProfilePosts/ProfilePosts";
 import {userDataType} from "../../../App";
-import {ActionTypes, postType} from "../../../store/state";
+import {ActionTypes, postType} from "../../../store/store";
 
 
 export const Profile: React.FC<{

@@ -9,7 +9,7 @@ import deepGreen from "@mui/material/colors/green";
 import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
-import {userListType} from "../../../store/state";
+import {userListType} from "../../../store/store";
 
 type userType = {
     data: userListType

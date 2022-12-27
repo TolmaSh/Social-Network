@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./ProfilePosts.module.scss"
 import {Post} from "./Post/Post";
-import { postType } from "../../../../store/state";
+import { postType } from "../../../../store/store";
 import {Button, Card, TextField, Typography} from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import Grid from "@mui/material/Grid";

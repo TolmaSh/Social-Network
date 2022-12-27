@@ -9,7 +9,7 @@ import {Messages} from "./Messages/Messages";
 import {Gallery} from "./Gallery/Gallery";
 import {Settings} from "./Settings/Settings";
 import {userDataType} from "../../App";
-import {ActionTypes, stateType} from "../../store/state";
+import {ActionTypes, stateType} from "../../store/store";
 
 type MainPropsType = {
     state: stateType
