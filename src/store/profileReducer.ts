@@ -1,27 +1,35 @@
-import {profilePageType} from "./store";
+import {ProfilePageType} from './store';
 
-const initialState = {
+const initialState: ProfilePageType = {
     newPost: '',
     postList: [
         {id: 1, message: 'Hi, how are you?', likesCount: 12},
         {id: 2, message: 'I`m fine , thank you. What about you?', likesCount: 9},
         {id: 3, message: 'I`m good to , is you go at work today?', likesCount: 4},
         {id: 4, message: 'No , today i go to restaurant to my friend birthday ', likesCount: 13}
-    ]
+    ],
+    userData: [{
+        id: 1,
+        name: 'Anatoly Movchan',
+        birth: '1 august',
+        city: 'Kiev',
+        education: 'IT-KAMASUTRA',
+        website: 'google.com'
+    }]
 }
-export const profileReducer = (state: profilePageType = initialState, action: ProfileActionTypes) => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionTypes) => {
     switch (action.type) {
-        case "ADD-POST": {
+        case 'ADD-POST': {
             const newPost = {
                 id: new Date().getTime(),
                 message: state.newPost,
                 likesCount: 0
             }
             state.postList.push(newPost)
-            state.newPost = "";
+            state.newPost = '';
             return state
         }
-        case "UPDATE-POST": {
+        case 'UPDATE-POST': {
             state.newPost = action.payload.newPostText
             return state
         }

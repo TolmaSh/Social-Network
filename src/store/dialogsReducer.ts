@@ -1,6 +1,6 @@
-import {dialogsPage} from "./store";
+import {DialogsPageType} from "./store";
 
-const initialState = {
+const initialState: DialogsPageType = {
     newMessageText: '',
     userList: [
         {key: 0, name: 'Anatoly', avatar: ''},
@@ -18,7 +18,7 @@ const initialState = {
 
     ]
 }
-export const dialogsReducer = (state: dialogsPage = initialState, action: DialogsActionTypes) => {
+export const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsActionTypes) => {
     switch (action.type) {
         case "ADD-MESSAGE": {
             const newMessage = {
