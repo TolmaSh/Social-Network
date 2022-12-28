@@ -2,7 +2,8 @@ import React from 'react';
 import reportWebVitals from './reportWebVitals';
 import ReactDOM from "react-dom";
 import App from "./App";
-import {store} from "./store/store";
+import {store} from "./store/redux-store";
+
 
 
 export const RenderThree = () => {
