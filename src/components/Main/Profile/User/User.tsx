@@ -2,8 +2,8 @@ import React from "react";
 import s from "./User.module.scss"
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
-import {userDataType} from "../../../../App";
 import {Typography} from "@mui/material";
+import {userDataType} from '../../../../store/store';
 
 type UserPropsType = {
     usersData: userDataType
