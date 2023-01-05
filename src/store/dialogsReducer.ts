@@ -32,6 +32,7 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Di
         case "UPDATE-MESSAGE-TEXT": {
             state.newMessageText = action.payload.newMessageText
             return state
+            // return {...state,newMessageText:action.payload.newMessageText}
         }
         default:
             return state

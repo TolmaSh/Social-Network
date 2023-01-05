@@ -1,35 +1,26 @@
-import React from "react";
-import s from "./Main.module.scss"
-import {Profile} from "./Profile/Profile";
+import React from 'react';
+import s from './Main.module.scss'
+import {ProfileContainer} from './Profile/ProfileContainer';
 import {
     Routes,
     Route
-} from "react-router-dom";
-import {Messages} from "./Messages/Messages";
-import {Gallery} from "./Gallery/Gallery";
-import {Settings} from "./Settings/Settings";
-import {ActionTypes, StateType, userDataType} from '../../store/store';
+} from 'react-router-dom';
+import {Gallery} from './Gallery/Gallery';
+import {Settings} from './Settings/Settings';
+import {MessagesContainer} from './Messages/MessagesContainer';
 
 type MainPropsType = {
-    state: StateType
-    usersData: userDataType
-    newPost: string
-    dispatch: (action: ActionTypes) => void
+    store: any
 }
 
-export const Main: React.FC<MainPropsType> = ({dispatch, newPost, state, usersData}) => {
+export const Main: React.FC<MainPropsType> = ({store}) => {
     return (
         <main className={s.main}>
             <div className={s.content}>
                 <Routes>
-                    <Route path="/" element={<Profile usersData={usersData} postList={state.profilePage.postList}
-                                                      dispatch={dispatch} newPost={newPost}/>}/>
+                    <Route path="/" element={<ProfileContainer store={store}/>}/>
                     <Route path="/Messages/*"
-                           element={<Messages userList={state.dialogsPage.userList}
-                                              messageList={state.dialogsPage.messageList}
-                                              newMessageText={state.dialogsPage.newMessageText}
-                                              dispatch={dispatch}
-                           />}/>
+                           element={<MessagesContainer store={store}/>}/>
                     <Route path="/Gallery" element={<Gallery/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
                 </Routes>

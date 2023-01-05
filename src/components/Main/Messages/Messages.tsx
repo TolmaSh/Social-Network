@@ -1,21 +1,20 @@
-import React from "react";
-import s from "./Messages.module.scss"
+import React from 'react';
+import s from './Messages.module.scss'
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Grid from '@mui/material/Grid';
-import {UserList} from "./UserList";
-import { messageListType, userListType} from "../../../store/store";
-
-import {Avatar, Box, Button, Divider, TextField, Typography} from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
-import {addMessageAC, updateMessageText, DialogsActionTypes} from "../../../store/dialogsReducer";
+import {UserList} from './UserList';
+import {messageListType, userListType} from '../../../store/store';
+import {Avatar, Box, Button, Divider, TextField, Typography} from '@mui/material';
+import SendIcon from '@mui/icons-material/Send';
 
 
 type MessagesPropsType = {
     userList: userListType[]
     messageList: messageListType[]
     newMessageText: string
-    dispatch: (action: DialogsActionTypes) => void
+    addMessage: () => void
+    updateMessage: (text: string) => void
 }
 
 function stringToColor(string: string) {
@@ -48,7 +47,8 @@ function stringAvatar(name: string) {
 }
 
 
-export const Messages: React.FC<MessagesPropsType> = ({newMessageText, userList, messageList, dispatch}) => {
+export const Messages: React.FC<MessagesPropsType> = (props) => {
+    const {newMessageText, userList, messageList, addMessage, updateMessage} = props
     const mappedUsers = userList.map((u: userListType) => (
         <UserList
             key={u.key} // кеи ОБЯЗАТЕЛЬНЫ в 99% - так что лучше их писать всегда при создании компонент в мапе
@@ -59,15 +59,15 @@ export const Messages: React.FC<MessagesPropsType> = ({newMessageText, userList,
         return (
             <ListItem key={m.key} className={s.message__list_item}>
                 <Avatar {...stringAvatar(m.item)}/>
-                <Typography className={s.post} component='span'>{m.item}</Typography>
+                <Typography className={s.post} component="span">{m.item}</Typography>
             </ListItem>
         )
     })
     const onClickAddMessage = () => {
-        dispatch(addMessageAC())
+        addMessage()
     }
     const onChangeNewMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(updateMessageText(e.currentTarget.value))
+        updateMessage(e.currentTarget.value)
     }
 
     return (
@@ -96,11 +96,10 @@ export const Messages: React.FC<MessagesPropsType> = ({newMessageText, userList,
                         mx: 0.8,
                     },
                 }}>
-
                     <TextField value={newMessageText} onChange={onChangeNewMessage} multiline label="Write new message"
-                               rows={2} fullWidth variant='standard'/>
+                               rows={2} fullWidth variant="standard"/>
                     <Divider orientation="vertical" variant="middle" flexItem/>
-                    <Button className={s.sendMessage} size='large' onClick={onClickAddMessage} variant="outlined"
+                    <Button className={s.sendMessage} size="large" onClick={onClickAddMessage} variant="outlined"
                             endIcon={<SendIcon/>}>
                         Send
                     </Button>

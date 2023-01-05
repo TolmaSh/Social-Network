@@ -6,16 +6,16 @@ import {Button, Card, TextField, Typography} from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
-import {addPostAC, ProfileActionTypes, updatePostTextAC} from "../../../../store/profileReducer";
 
 
 type ProfilePostsPropsType = {
     postList: postType[]
-    dispatch: (action: ProfileActionTypes) => void
+    addPost: () => void
+    updatePost: (text:string) => void
     newPost: string
 }
 
-export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({dispatch, newPost, postList}) => {
+export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({newPost, postList,addPost,updatePost}) => {
     const mappedPosts = postList.map((p: postType) => (
 
         <Post
@@ -27,10 +27,10 @@ export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({dispatch, newPost
     ))
 
     const onClickAddPostHandler = () => {
-        dispatch(addPostAC())
+        addPost()
     }
     const onChangePostHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(updatePostTextAC(e.currentTarget.value))
+        updatePost(e.currentTarget.value)
     }
     return (
         <div className={s.posts__wrapper}>

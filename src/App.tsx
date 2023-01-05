@@ -4,24 +4,24 @@ import {Header} from "./components/Header/Header";
 import {Main} from "./components/Main/Main";
 import {Navigation} from "./components/Navigation/Navigation";
 import {HashRouter} from "react-router-dom";
-import {ActionTypes, StateType} from './store/store'
+import {StateType} from './store/store'
 
 
 
 
 type AppPropsType = {
     state: StateType
-    dispatch: (action: ActionTypes) => void
+    store: any
 }
 
-function App({dispatch, state}: AppPropsType) {
+function App({store, state}: AppPropsType) {
 
     return (
         <HashRouter>
             <div className="wrapper">
                 <Header/>
                 <Navigation/>
-                <Main usersData={state.profilePage.userData[0]} state={state} dispatch={dispatch} newPost={state.profilePage.newPost}/>
+                <Main store={store}/>
             </div>
         </HashRouter>
     );
