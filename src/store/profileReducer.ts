@@ -17,7 +17,7 @@ const initialState: ProfilePageType = {
         website: 'google.com'
     }]
 }
-export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionTypes) => {
+export const  profileReducer = (state: ProfilePageType = initialState, action: ProfileActionTypes) => {
     switch (action.type) {
         case 'ADD-POST': {
             const newPost = {

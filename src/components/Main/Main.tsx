@@ -8,10 +8,10 @@ import {
 import {Messages} from "./Messages/Messages";
 import {Gallery} from "./Gallery/Gallery";
 import {Settings} from "./Settings/Settings";
-import {ActionTypes, stateType, userDataType} from '../../store/store';
+import {ActionTypes, StateType, userDataType} from '../../store/store';
 
 type MainPropsType = {
-    state: stateType
+    state: StateType
     usersData: userDataType
     newPost: string
     dispatch: (action: ActionTypes) => void

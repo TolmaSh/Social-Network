@@ -4,13 +4,13 @@ import {Header} from "./components/Header/Header";
 import {Main} from "./components/Main/Main";
 import {Navigation} from "./components/Navigation/Navigation";
 import {HashRouter} from "react-router-dom";
-import {ActionTypes, stateType} from './store/store'
+import {ActionTypes, StateType} from './store/store'
 
 
 
 
 type AppPropsType = {
-    state: stateType
+    state: StateType
     dispatch: (action: ActionTypes) => void
 }
 

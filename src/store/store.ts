@@ -1,5 +1,5 @@
-import {ProfileActionTypes, profileReducer} from "./profileReducer";
-import {DialogsActionTypes, dialogsReducer} from "./dialogsReducer";
+import {ProfileActionTypes} from "./profileReducer";
+import {DialogsActionTypes} from "./dialogsReducer";
 
 export type userDataType = {
     id: number
@@ -35,7 +35,7 @@ export type DialogsPageType = {
     newMessageText: string
 }
 
-export type stateType = {
+export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
@@ -43,8 +43,8 @@ export type stateType = {
 export type ActionTypes = ProfileActionTypes | DialogsActionTypes
 
 export interface storeType {
-    _state: stateType
-    getState: () => stateType
+    _state: StateType
+    getState: () => StateType
     _callSubscriber: () => void
     subscribe: (observer: () => void) => void
     dispatch: (action: ActionTypes) => void
