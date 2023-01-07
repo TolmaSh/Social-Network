@@ -9,18 +9,15 @@ import {Gallery} from './Gallery/Gallery';
 import {Settings} from './Settings/Settings';
 import {MessagesContainer} from './Messages/MessagesContainer';
 
-type MainPropsType = {
-    store: any
-}
 
-export const Main: React.FC<MainPropsType> = ({store}) => {
+export const Main = () => {
     return (
         <main className={s.main}>
             <div className={s.content}>
                 <Routes>
-                    <Route path="/" element={<ProfileContainer store={store}/>}/>
+                    <Route path="/" element={<ProfileContainer/>}/>
                     <Route path="/Messages/*"
-                           element={<MessagesContainer store={store}/>}/>
+                           element={<MessagesContainer/>}/>
                     <Route path="/Gallery" element={<Gallery/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
                 </Routes>

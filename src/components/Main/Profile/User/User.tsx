@@ -9,12 +9,11 @@ type UserPropsType = {
     usersData: userDataType[]
 }
 
-
 export const User: React.FC<UserPropsType> = (props) => {
     return (
         <>
             {props.usersData.map(u => {
-                return <Card variant="outlined" className={s.wrapper}>
+                return <Card variant="outlined" className={s.wrapper} key={u.id}>
                     <Avatar alt={u.name} src="/static/images/avatar/1.jpg"/>
                     <div className={s.userInfo}>
                         <Typography sx={{fontWeight: 400}}
