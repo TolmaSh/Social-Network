@@ -3,7 +3,8 @@ import reportWebVitals from './reportWebVitals';
 import ReactDOM from "react-dom";
 import App from "./App";
 import store from "./store/redux-store";
-import StoreContext from './StoreContext';
+import {Provider} from 'react-redux';
+
 
 
 
@@ -11,9 +12,9 @@ export const RenderThree = () => {
 
     ReactDOM.render(
         <React.StrictMode>
-            <StoreContext.Provider value={store}>
+            <Provider store={store}>
             <App />
-            </StoreContext.Provider>
+            </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );

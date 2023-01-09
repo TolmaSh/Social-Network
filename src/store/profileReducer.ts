@@ -25,13 +25,15 @@ export const  profileReducer = (state: ProfilePageType = initialState, action: P
                 message: state.newPost,
                 likesCount: 0
             }
-            state.postList.push(newPost)
-            state.newPost = '';
-            return state
+            // state.postList.push(newPost)
+            // state.newPost = '';
+            // return state
+            return {...state,postList: [...state.postList,newPost],newPost: ''}
         }
         case 'UPDATE-POST': {
-            state.newPost = action.payload.newPostText
-            return state
+            // state.newPost = action.payload.newPostText
+            // return state
+            return {...state,newPost:action.payload.newPostText }
         }
         default:
             return state

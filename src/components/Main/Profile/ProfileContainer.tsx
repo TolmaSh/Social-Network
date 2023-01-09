@@ -1,36 +1,23 @@
 import React from 'react';
-import s from './Profile.module.scss'
-import {User} from './User/User';
-import {ProfilePosts} from './ProfilePosts/ProfilePosts';
-import {ProfilePageType} from '../../../store/store';
+import {StateType} from '../../../store/store';
 import {addPostAC, updatePostTextAC} from '../../../store/profileReducer';
-import StoreContext from '../../../StoreContext';
+import {connect} from 'react-redux';
+import {ProfilePage} from './ProfilePage';
 
 
-export const ProfileContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
-                    const state: ProfilePageType = store.getState().profilePage
-                    const addPost = () => {
-                        store.dispatch(addPostAC())
-                    }
-                    const updatePost = (text: string) => {
-                        store.dispatch(updatePostTextAC(text))
-                    }
-                    return (
-                        <div className={s.wrapper}>
-                            <User usersData={state.userData}/>
-                            <ProfilePosts postList={state.postList} newPost={state.newPost} addPost={addPost}
-                                          updatePost={updatePost}/>
-                        </div>
-                    )
-                }
-            }
 
-        </StoreContext.Consumer>
 
-    )
-
+const mapStateToProps = (state:StateType) => {
+    return {
+        usersData: state.profilePage.userData,
+        postList: state.profilePage.postList,
+        newPost: state.profilePage.newPost
+    }
 }
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        addPost: () => {dispatch(addPostAC())},
+        updatePost: (text:string) => {dispatch(updatePostTextAC(text))}
+    }
+}
+export const ProfileContainer = connect(mapStateToProps,mapDispatchToProps)(ProfilePage)

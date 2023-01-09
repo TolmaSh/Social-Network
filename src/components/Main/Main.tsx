@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Main.module.scss'
-import {ProfileContainer} from './Profile/ProfileContainer';
+
 import {
     Routes,
     Route
@@ -8,6 +8,7 @@ import {
 import {Gallery} from './Gallery/Gallery';
 import {Settings} from './Settings/Settings';
 import {MessagesContainer} from './Messages/MessagesContainer';
+import { ProfileContainer } from './Profile/ProfileContainer';
 
 
 export const Main = () => {

@@ -25,14 +25,15 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Di
                 key: new Date().getTime(),
                 item: state.newMessageText,
             }
-            state.messageList.push(newMessage)
-            state.newMessageText = "";
-            return state
+            // state.messageList.push(newMessage)
+            // state.newMessageText = "";
+            // return state
+            return {...state,messageList: [...state.messageList,newMessage],newMessageText: ''}
         }
         case "UPDATE-MESSAGE-TEXT": {
-            state.newMessageText = action.payload.newMessageText
-            return state
-            // return {...state,newMessageText:action.payload.newMessageText}
+            // state.newMessageText = action.payload.newMessageText
+            // return state
+            return {...state,newMessageText:action.payload.newMessageText}
         }
         default:
             return state
