@@ -1,5 +1,5 @@
-
-
+const oldStore = () => {}
+export default oldStore
 // export type userDataType = {
 //     id: number
 //     name: string

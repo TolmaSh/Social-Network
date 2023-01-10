@@ -1,6 +1,6 @@
 import {v1} from 'uuid';
 
-type UserType = {
+export type UserType = {
     id: string
     follow: boolean
     photoUrl: string

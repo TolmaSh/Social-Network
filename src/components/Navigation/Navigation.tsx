@@ -15,11 +15,12 @@ type navListType = {
     way: string
 }
 const navList: Array<navListType> = [
-    {id: 0, item: 'Home', way: '/'},
-    {id: 1, item: 'Messages', way: '/Messages'},
-    {id: 2, item: 'Gallery', way: '/Gallery'},
-    {id: 3, item: 'Settings', way: '/Settings'},
-    {id: 4, item: 'Logout', way: '/logout'},
+    {id: 1, item: 'Home', way: '/'},
+    {id: 2, item: 'Messages', way: '/Messages'},
+    {id: 3, item: 'Users', way: '/Users'},
+    {id: 4, item: 'Gallery', way: '/Gallery'},
+    {id: 5, item: 'Settings', way: '/Settings'},
+    {id: 6, item: 'Logout', way: '/logout'},
 ]
 
 export const Navigation = () => {

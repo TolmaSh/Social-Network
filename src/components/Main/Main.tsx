@@ -8,7 +8,8 @@ import {
 import {Gallery} from './Gallery/Gallery';
 import {Settings} from './Settings/Settings';
 import {MessagesContainer} from './Messages/MessagesContainer';
-import { ProfileContainer } from './Profile/ProfileContainer';
+import {ProfileContainer} from './Profile/ProfileContainer';
+import {UsersContainer} from './Users/UsersContainer';
 
 
 export const Main = () => {
@@ -16,9 +17,12 @@ export const Main = () => {
         <main className={s.main}>
             <div className={s.content}>
                 <Routes>
-                    <Route path="/" element={<ProfileContainer/>}/>
+                    <Route path="/"
+                           element={<ProfileContainer/>}/>
                     <Route path="/Messages/*"
                            element={<MessagesContainer/>}/>
+                    <Route path="/Users/*"
+                           element={<UsersContainer/>}/>
                     <Route path="/Gallery" element={<Gallery/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
                 </Routes>

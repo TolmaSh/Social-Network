@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './User.module.scss'
+import s from './ProfileUser.module.scss'
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import {Typography} from '@mui/material';
@@ -9,7 +9,7 @@ type UserPropsType = {
     usersData: userDataType[]
 }
 
-export const User: React.FC<UserPropsType> = (props) => {
+export const ProfileUser: React.FC<UserPropsType> = (props) => {
     return (
         <>
             {props.usersData.map(u => {
