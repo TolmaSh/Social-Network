@@ -1,7 +1,7 @@
 import React from 'react';
 import { StateType} from '../../../store/store';
 
-import {addMessageAC, updateMessageText} from '../../../store/dialogsReducer';
+import {addMessageAC, updateMessageTextAC} from '../../../store/dialogsReducer';
 import {Messages} from './Messages';
 import {connect} from 'react-redux';
 
@@ -16,7 +16,7 @@ const mapStateToProps = (state: StateType) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         addMessage: () => {dispatch(addMessageAC())},
-        updateMessage: (text: string) => {dispatch(updateMessageText(text))}
+        updateMessage: (text: string) => {dispatch(updateMessageTextAC(text))}
 
     }
 }
