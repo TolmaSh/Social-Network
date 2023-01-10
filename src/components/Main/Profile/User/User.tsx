@@ -3,7 +3,7 @@ import s from './User.module.scss'
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import {Typography} from '@mui/material';
-import {userDataType} from '../../../../store/store';
+import {userDataType} from '../../../../store/profileReducer';
 
 type UserPropsType = {
     usersData: userDataType[]

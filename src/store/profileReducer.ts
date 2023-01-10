@@ -1,5 +1,23 @@
-import {ProfilePageType} from './store';
 
+
+export type userDataType = {
+    id: number
+    name: string
+    birth: string
+    city: string
+    education: string
+    website: string
+}
+export type postType = {
+    id: number
+    message: string
+    likesCount: number
+}
+export type ProfilePageType = {
+    newPost: string
+    postList: postType[]
+    userData: userDataType[]
+}
 const initialState: ProfilePageType = {
     newPost: '',
     postList: [

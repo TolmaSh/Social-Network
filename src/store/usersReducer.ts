@@ -8,10 +8,10 @@ type UserType = {
     status: string
     location: { country: string, city: string }
 }
-export type UsersReducerType = {
+export type UsersPageType = {
     users: UserType[]
 }
-const initialState: UsersReducerType = {
+const initialState: UsersPageType = {
     users: [
         {
             id: v1(),
@@ -39,7 +39,7 @@ const initialState: UsersReducerType = {
         },
     ]
 }
-export const usersReducer = (state: UsersReducerType = initialState, action: UsersActionType) => {
+export const usersReducer = (state: UsersPageType = initialState, action: UsersActionType) => {
     switch (action.type) {
         case 'FOLLOW-USER':
             return {...state, users: state.users.map(u => u.id === action.payload.userID ? {...u, follow: true} : u)}

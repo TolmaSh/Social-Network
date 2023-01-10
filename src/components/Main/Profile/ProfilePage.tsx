@@ -2,12 +2,13 @@ import React from 'react';
 import s from './Profile.module.scss'
 import {User} from './User/User';
 import {ProfilePosts} from './ProfilePosts/ProfilePosts';
-import {postType, userDataType} from '../../../store/store';
+import {postType, userDataType} from '../../../store/profileReducer';
+
 type PropsType = {
     usersData: userDataType[]
     postList: postType[]
     addPost: () => void
-    updatePost: (text:string) => void
+    updatePost: (text: string) => void
     newPost: string
 }
 

@@ -1,21 +1,21 @@
-import React from "react";
-import s from "./ProfilePosts.module.scss"
-import {Post} from "./Post/Post";
-import { postType } from "../../../../store/store";
-import {Button, Card, TextField, Typography} from "@mui/material";
+import React from 'react';
+import s from './ProfilePosts.module.scss'
+import {Post} from './Post/Post';
+import {Button, Card, TextField, Typography} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import Grid from "@mui/material/Grid";
-import List from "@mui/material/List";
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
+import {postType} from '../../../../store/profileReducer';
 
 
 type ProfilePostsPropsType = {
     postList: postType[]
     addPost: () => void
-    updatePost: (text:string) => void
+    updatePost: (text: string) => void
     newPost: string
 }
 
-export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({newPost, postList,addPost,updatePost}) => {
+export const ProfilePosts: React.FC<ProfilePostsPropsType> = ({newPost, postList, addPost, updatePost}) => {
     const mappedPosts = postList.map((p: postType) => (
 
         <Post

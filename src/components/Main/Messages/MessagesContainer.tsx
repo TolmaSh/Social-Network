@@ -1,12 +1,10 @@
-import React from 'react';
-import { StateType} from '../../../store/store';
-
 import {addMessageAC, updateMessageTextAC} from '../../../store/dialogsReducer';
 import {Messages} from './Messages';
 import {connect} from 'react-redux';
+import {rootReducerType} from '../../../store/redux-store';
 
 
-const mapStateToProps = (state: StateType) => {
+const mapStateToProps = (state: rootReducerType) => {
     return {
         userList: state.dialogsPage.userList,
         messageList: state.dialogsPage.messageList,
@@ -15,9 +13,13 @@ const mapStateToProps = (state: StateType) => {
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        addMessage: () => {dispatch(addMessageAC())},
-        updateMessage: (text: string) => {dispatch(updateMessageTextAC(text))}
+        addMessage: () => {
+            dispatch(addMessageAC())
+        },
+        updateMessage: (text: string) => {
+            dispatch(updateMessageTextAC(text))
+        }
 
     }
 }
-export const MessagesContainer = connect(mapStateToProps,mapDispatchToProps)(Messages)
+export const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages)

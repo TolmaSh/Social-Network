@@ -4,9 +4,9 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Grid from '@mui/material/Grid';
 import {UserList} from './UserList';
-import {messageListType, userListType} from '../../../store/store';
 import {Avatar, Box, Button, Divider, TextField, Typography} from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import {messageListType, userListType} from '../../../store/dialogsReducer';
 
 
 type MessagesPropsType = {

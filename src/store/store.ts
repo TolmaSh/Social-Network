@@ -1,55 +1,54 @@
-import {ProfileActionTypes} from "./profileReducer";
-import {DialogsActionTypes} from "./dialogsReducer";
 
-export type userDataType = {
-    id: number
-    name: string
-    birth: string
-    city: string
-    education: string
-    website: string
-}
-export type userListType = {
-    key: number
-    name: string
-    avatar: string
-}
-export type messageListType = {
-    key: number
-    item: string
-}
-export type postType = {
-    id: number
-    message: string
-    likesCount: number
-}
 
-export type ProfilePageType = {
-    newPost: string
-    postList: postType[]
-    userData: userDataType[]
-}
-export type DialogsPageType = {
-    userList: userListType[]
-    messageList: messageListType[]
-    newMessageText: string
-}
+// export type userDataType = {
+//     id: number
+//     name: string
+//     birth: string
+//     city: string
+//     education: string
+//     website: string
+// }
+// export type userListType = {
+//     key: number
+//     name: string
+//     avatar: string
+// }
+// export type messageListType = {
+//     key: number
+//     item: string
+// }
+// export type postType = {
+//     id: number
+//     message: string
+//     likesCount: number
+// }
 
-export type StateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-}
+// export type ProfilePageType = {
+//     newPost: string
+//     postList: postType[]
+//     userData: userDataType[]
+// }
+// export type DialogsPageType = {
+//     userList: userListType[]
+//     messageList: messageListType[]
+//     newMessageText: string
+// }
 
-export type ActionTypes = ProfileActionTypes | DialogsActionTypes
+// export type StateType = {
+//     profilePage: ProfilePageType
+//     dialogsPage: DialogsPageType
+// }
 
-export interface storeType {
-    _state: StateType
-    getState: () => StateType
-    _callSubscriber: () => void
-    subscribe: (observer: () => void) => void
-    dispatch: (action: ActionTypes) => void
+// export type ActionTypes = ProfileActionTypes | DialogsActionTypes
 
-}
+// export interface storeType {
+//     _state: StateType
+//     getState: () => StateType
+//     _callSubscriber: () => void
+//     subscribe: (observer: () => void) => void
+//     dispatch: (action: ActionTypes) => void
+//
+// }
 
 // export const store: storeType = {
 //     _state: {

@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import {NavLink} from "react-router-dom";
-import s from "./Messages.module.scss";
-import {ListItemButton} from "@mui/material";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import deepGreen from "@mui/material/colors/green";
-import InsertEmoticonIcon from "@mui/icons-material/InsertEmoticon";
-import ListItemText from "@mui/material/ListItemText";
-import ListItem from "@mui/material/ListItem";
-import {userListType} from "../../../store/store";
+import {NavLink} from 'react-router-dom';
+import s from './Messages.module.scss';
+import {ListItemButton} from '@mui/material';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+import deepGreen from '@mui/material/colors/green';
+import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
+import ListItemText from '@mui/material/ListItemText';
+import ListItem from '@mui/material/ListItem';
+import {userListType} from '../../../store/dialogsReducer';
 
 type userType = {
     data: userListType

@@ -1,8 +1,8 @@
 import React from 'react'
-import {postType} from "../../../../../store/store";
-import {Divider, ListItem, ListItemAvatar, ListItemText, Typography} from "@mui/material";
-import Avatar from "@mui/material/Avatar";
+import {Divider, ListItem, ListItemAvatar, ListItemText, Typography} from '@mui/material';
+import Avatar from '@mui/material/Avatar';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import {postType} from '../../../../../store/profileReducer';
 
 type PostPropsType = {
     key: number
@@ -27,7 +27,7 @@ export const Post: React.FC<PostPropsType> = ({data}) => {
                                 variant="body2"
                                 color="text.primary"
                             >
-                                <ThumbUpOutlinedIcon color="primary" fontSize='small'/> - {data.likesCount}
+                                <ThumbUpOutlinedIcon color="primary" fontSize="small"/> - {data.likesCount}
                             </Typography>
                         </React.Fragment>
                     }

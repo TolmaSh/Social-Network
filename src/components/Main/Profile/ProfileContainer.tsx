@@ -1,13 +1,10 @@
-import React from 'react';
-import {StateType} from '../../../store/store';
 import {addPostAC, updatePostTextAC} from '../../../store/profileReducer';
 import {connect} from 'react-redux';
 import {ProfilePage} from './ProfilePage';
+import {rootReducerType} from '../../../store/redux-store';
 
 
-
-
-const mapStateToProps = (state:StateType) => {
+const mapStateToProps = (state: rootReducerType) => {
     return {
         usersData: state.profilePage.userData,
         postList: state.profilePage.postList,
@@ -16,8 +13,12 @@ const mapStateToProps = (state:StateType) => {
 }
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        addPost: () => {dispatch(addPostAC())},
-        updatePost: (text:string) => {dispatch(updatePostTextAC(text))}
+        addPost: () => {
+            dispatch(addPostAC())
+        },
+        updatePost: (text: string) => {
+            dispatch(updatePostTextAC(text))
+        }
     }
 }
-export const ProfileContainer = connect(mapStateToProps,mapDispatchToProps)(ProfilePage)
+export const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ProfilePage)
