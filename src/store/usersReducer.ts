@@ -1,4 +1,4 @@
-import {v1} from 'uuid';
+
 
 export type UserType = {
     id: string
@@ -12,32 +12,7 @@ export type UsersPageType = {
     users: UserType[]
 }
 const initialState: UsersPageType = {
-    users: [
-        {
-            id: v1(),
-            follow: true,
-            photoUrl: '',
-            fullName: 'Anatoly',
-            status: 'I am looking a Job right now..',
-            location: {country: 'Ukraine', city: 'Kiev'}
-        },
-        {
-            id: v1(),
-            follow: false,
-            photoUrl: '',
-            fullName: 'Vadym',
-            status: 'I am drink beer now',
-            location: {country: 'Ukraine', city: 'Kiev'}
-        },
-        {
-            id: v1(),
-            follow: true,
-            photoUrl: '',
-            fullName: 'Anastasiia',
-            status: 'I am sleep now',
-            location: {country: 'Ukraine', city: 'Kiev'}
-        },
-    ]
+    users: []
 }
 export const usersReducer = (state: UsersPageType = initialState, action: UsersActionType) => {
     switch (action.type) {

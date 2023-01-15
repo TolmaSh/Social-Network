@@ -1,0 +1,30 @@
+.userList {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 210px;
+  height: 290px;
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(0,0,0,.05);
+  border-radius: 15px;
+  padding: 15px 0 15px 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+}
+.userName {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+.userStatus {
+  margin: 0;
+  font-size: 14px;
+  color: #adb5bd;
+  font-weight: 500;
+}
