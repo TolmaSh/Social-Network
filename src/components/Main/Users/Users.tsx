@@ -3,7 +3,7 @@ import s from './Users.module.scss'
 import Card from '@mui/material/Card';
 import { Avatar, Button } from '@mui/material';
 import {UserType} from '../../../store/usersReducer';
-import { v1 } from 'uuid';
+import axios from 'axios';
 export const stringToColor = (string: string) => {
     let hash = 0;
     let i;
@@ -45,33 +45,12 @@ type PropsType = {
 const Users: React.FC<PropsType> = (props) => {
     const {users,follow,unFollow,setUsers} = props
     if (users.length === 0) {
-        setUsers( [
-            {
-                id: v1(),
-                follow: true,
-                photoUrl: '',
-                fullName: 'Anatoly',
-                status: 'I am looking a Job right now..',
-                location: {country: 'Ukraine', city: 'Kiev'}
-            },
-            {
-                id: v1(),
-                follow: false,
-                photoUrl: '',
-                fullName: 'Vadym',
-                status: 'I am drink beer now',
-                location: {country: 'Ukraine', city: 'Kiev'}
-            },
-            {
-                id: v1(),
-                follow: true,
-                photoUrl: '',
-                fullName: 'Anastasiia',
-                status: 'I am sleep now',
-                location: {country: 'Ukraine', city: 'Kiev'}
-            },
+        axios.get("https://social-network.samuraijs.com/api/1.0/users")
+            .then(response => {
+                debugger
+                setUsers(response.data.items)
+            })
 
-        ])
     }
     const mappedUsers = users.map(u=> {
             const onClickFollow = () => {
@@ -81,10 +60,10 @@ const Users: React.FC<PropsType> = (props) => {
                 follow(u.id)
             }
             return <li key={u.id} className={s.user} >
-                <Avatar {...stringAvatar(u.fullName) } />
-                <h2 className={s.userName}>{u.fullName}</h2>
+                <Avatar {...stringAvatar(u.name) } />
+                <h2 className={s.userName}>{u.name}</h2>
                 <h3 className={s.userStatus}>{u.status}</h3>
-                { u.follow ?
+                { u.followed ?
                     <Button onClick={onClickFollow} variant="contained">Unfollow</Button> :
                     <Button onClick={onClickUnFollow} variant="contained">Follow</Button>
                 }
