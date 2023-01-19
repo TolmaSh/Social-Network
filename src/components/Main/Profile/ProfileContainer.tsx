@@ -1,7 +1,7 @@
 import {addPostAC, updatePostTextAC} from '../../../store/profileReducer';
 import {connect} from 'react-redux';
 import {ProfilePage} from './ProfilePage';
-import {rootReducerType} from '../../../store/redux-store';
+import {rootReducerType} from '../../../store/store';
 
 
 const mapStateToProps = (state: rootReducerType) => {

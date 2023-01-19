@@ -1,7 +1,7 @@
 import {addMessageAC, updateMessageTextAC} from '../../../store/dialogsReducer';
 import {Messages} from './Messages';
 import {connect} from 'react-redux';
-import {rootReducerType} from '../../../store/redux-store';
+import {rootReducerType} from '../../../store/store';
 
 
 const mapStateToProps = (state: rootReducerType) => {

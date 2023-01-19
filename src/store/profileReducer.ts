@@ -1,3 +1,4 @@
+import { v1 } from "uuid"
 
 
 export type userDataType = {
@@ -9,7 +10,7 @@ export type userDataType = {
     website: string
 }
 export type postType = {
-    id: number
+    id: string
     message: string
     likesCount: number
 }
@@ -21,10 +22,10 @@ export type ProfilePageType = {
 const initialState: ProfilePageType = {
     newPost: '',
     postList: [
-        {id: 1, message: 'Hi, how are you?', likesCount: 12},
-        {id: 2, message: 'I`m fine , thank you. What about you?', likesCount: 9},
-        {id: 3, message: 'I`m good to , is you go at work today?', likesCount: 4},
-        {id: 4, message: 'No , today i go to restaurant to my friend birthday ', likesCount: 13}
+        {id: v1(), message: 'Hi, how are you?', likesCount: 12},
+        {id: v1(), message: 'I`m fine , thank you. What about you?', likesCount: 9},
+        {id: v1(), message: 'I`m good to , is you go at work today?', likesCount: 4},
+        {id: v1(), message: 'No , today i go to restaurant to my friend birthday ', likesCount: 13}
     ],
     userData: [{
         id: 1,
@@ -39,14 +40,14 @@ export const  profileReducer = (state: ProfilePageType = initialState, action: P
     switch (action.type) {
         case 'ADD-POST': {
             const newPost = {
-                id: new Date().getTime(),
+                id: v1(),
                 message: state.newPost,
                 likesCount: 0
             }
             return {...state,postList: [...state.postList,newPost],newPost: ''}
         }
         case 'UPDATE-POST': {
-            return {...state,newPost:action.payload.newPostText }
+            return {...state,...action.payload}
         }
         default:
             return state
@@ -59,9 +60,9 @@ export type ProfileActionTypes = AddPostActionType | UpdatePostActionType
 type AddPostActionType = ReturnType<typeof addPostAC>
 type UpdatePostActionType = ReturnType<typeof updatePostTextAC>
 export const addPostAC = () => ({type: 'ADD-POST'} as const)
-export const updatePostTextAC = (newPostText: string) => {
+export const updatePostTextAC = (newPost: string) => {
     return {
         type: 'UPDATE-POST',
-        payload: {newPostText}
+        payload: {newPost}
     } as const
 }
