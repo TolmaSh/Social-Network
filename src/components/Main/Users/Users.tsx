@@ -1,79 +1,87 @@
 import React from 'react';
-import s from './Users.module.scss'
 import Card from '@mui/material/Card';
-import { Avatar, Button } from '@mui/material';
+import s from './Users.module.scss';
 import {UserType} from '../../../store/usersReducer';
-import axios from 'axios';
-// type PropsType = {
-//     users: UserType[],
-//     follow: (userID: string) => void,
-//     unFollow: (userID: string) => void,
-//     setUsers: (users: UserType[]) => void,
-// }
+import {Avatar, Button} from '@mui/material';
 
-
-class Users extends React.Component<any,any> {
-    stringToColor = (string: string) => {
+type PropsType = {
+    totalCount:number
+    count: number
+    onPageChanged: (pageNum: number) => void
+    page: number
+    users: UserType[]
+    follow: (userID: string) => void
+    unFollow: (userID: string) => void
+}
+export const Users = (props: PropsType) => {
+    const {totalCount,count,onPageChanged,page,users,follow,unFollow} = props
+    const totalPageCount = Math.ceil(totalCount / count);
+    let pages: number[] = [];
+    for (let i = 1; i <= totalPageCount; i++) {
+        if (pages.length < 10) {
+            pages.push(i);
+        }
+    }
+    const stringToColor = (string: string) => {
         let hash = 0;
         let i;
-    
+
         /* eslint-disable no-bitwise */
         for (i = 0; i < string.length; i += 1) {
             hash = string.charCodeAt(i) + ((hash << 5) - hash);
         }
-    
+
         let color = '#';
-    
+
         for (i = 0; i < 3; i += 1) {
             const value = (hash >> (i * 8)) & 0xff;
             color += `00${value.toString(16)}`.substr(-2);
         }
-        /* eslint-enable no-bitwise */
-    
         return color;
     };
-    stringAvatar = (name: string) => {
+    const stringAvatar = (name: string) => {
         return {
             sx: {
-                bgcolor: this.stringToColor(name),
+                bgcolor: stringToColor(name),
                 width: 56,
-                height: 56
+                height: 56,
             },
-            children: `${name.split(' ')[0][0]}${name.split(' ')[0][1]}`,
+            children: `${name.split(' ')[0][0].toUpperCase()}${name.split(' ')[0][1].toUpperCase()}`,
         };
     }
-    componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users")
-        .then(response => {
-            debugger
-            this.props.setUsers(response.data.items)
-        })
-    }
-    render() {
-       return <div>
+
+    return (
+        <div>
         <Card variant="outlined">
             <h2>Users</h2>
         </Card>
-        <ul className={s.userList}>
-                 {this.props.users.map( (u: UserType) => {
-            const onClickFollow = () => {
-                this.props.unFollow(u.id)
-            }
-            const onClickUnFollow = () => {
-                this.props.follow(u.id)
-            }
-            return <li key={u.id} className={s.user} >
-                <Avatar {...this.stringAvatar(u.name) } />
-                <h2 className={s.userName}>{u.name}</h2>
-                <h3 className={s.userStatus}>{u.status}</h3>
-                { u.followed ?
-                    <Button onClick={onClickFollow} variant="contained">Unfollow</Button> :
-                    <Button onClick={onClickUnFollow} variant="contained">Follow</Button>
-                }
-            </li>
-        })}
+        <ul className={s.pagination}>
+            {pages.map(p => {
+                return <li onClick={() => onPageChanged(p)} key={p}>{page === p ? <b>{p}</b> : p}</li>
+            })}
         </ul>
-        </div>
-    }
-}
-export default Users;
+
+        <ul className={s.userList}>
+            {users.map((u: UserType) => {
+                const onClickFollow = () => {
+                    unFollow(u.id)
+                }
+                const onClickUnFollow = () => {
+                    follow(u.id)
+                }
+
+                return <li key={u.id} className={s.user}>
+                    <Avatar {...stringAvatar(u.name)} src={u.photos.large !== null ? u.photos.large : ''}
+                            alt={u.name}/>
+                    <h2 className={s.userName}>{u.name}</h2>
+                    <h3 className={s.userStatus}>{u.status ? u.status : 'User don`t have status'}</h3>
+                    {u.followed ?
+                        <Button onClick={onClickFollow} variant="contained">Unfollow</Button> :
+                        <Button onClick={onClickUnFollow} variant="contained">Follow</Button>
+                    }
+                </li>
+            })}
+        </ul>
+    </div>
+    )
+};

@@ -21,7 +21,7 @@ export const Main = () => {
                            element={<ProfileContainer/>}/>
                     <Route path="/Messages/*"
                            element={<MessagesContainer/>}/>
-                    <Route path="/Users/*"
+                    <Route path="/UsersAPIComponent/*"
                            element={<UsersContainer/>}/>
                     <Route path="/Gallery" element={<Gallery/>}/>
                     <Route path="/Settings" element={<Settings/>}/>
