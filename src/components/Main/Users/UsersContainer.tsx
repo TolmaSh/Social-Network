@@ -3,8 +3,8 @@ import {rootReducerType} from '../../../store/store';
 import {followUserAC, setPageAC, setTotalCountAC, setUsersAC, unFollowUserAC, UserType} from '../../../store/usersReducer';
 import {Dispatch} from 'redux';
 import React from 'react';
-import axios from 'axios/index';
 import {Users} from './Users';
+import axios from 'axios';
 
 
 class UsersContainer extends React.Component<any,any> {
@@ -59,4 +59,4 @@ const MapDispatchToProps = (dispatch: Dispatch) => {
     
 }
 
-export default connect(MapStateToProps,MapDispatchToProps)(UsersContainer)
+export default connect(MapStateToProps,MapDispatchToProps)(UsersContainer);
