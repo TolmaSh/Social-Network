@@ -8,8 +8,8 @@ import {
 import {Gallery} from './Gallery/Gallery';
 import {Settings} from './Settings/Settings';
 import {MessagesContainer} from './Messages/MessagesContainer';
-import {ProfileContainer} from './Profile/ProfileContainer';
 import UsersContainer from './Users/UsersContainer';
+import ProfileContainer from './Profile/ProfileContainer';
 
 
 export const Main = () => {

@@ -1,7 +1,28 @@
-import {addPostAC, updatePostTextAC} from '../../../store/profileReducer';
+import {addPost, setProfileData, updatePostText} from '../../../store/profileReducer';
 import {connect} from 'react-redux';
-import {ProfilePage} from './ProfilePage';
 import {rootReducerType} from '../../../store/store';
+import s from './Profile.module.scss';
+import {ProfileUser} from './ProfileUser/ProfileUser';
+import {ProfilePosts} from './ProfilePosts/ProfilePosts';
+import React from 'react';
+import axios from 'axios';
+
+class ProfileContainer extends React.Component<any, any> {
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+            .then(response => {
+                this.props.setProfileData(response.data)
+            })
+    }
+
+    render() {
+        return <div className={s.wrapper}>
+            <ProfileUser usersData={this.props.usersData}/>
+            <ProfilePosts postList={this.props.postList} newPost={this.props.newPost} addPost={this.props.addPost}
+                          updatePost={this.props.updatePostText}/>
+        </div>
+    }
+}
 
 
 const mapStateToProps = (state: rootReducerType) => {
@@ -11,14 +32,4 @@ const mapStateToProps = (state: rootReducerType) => {
         newPost: state.profilePage.newPost
     }
 }
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        addPost: () => {
-            dispatch(addPostAC())
-        },
-        updatePost: (text: string) => {
-            dispatch(updatePostTextAC(text))
-        }
-    }
-}
-export const ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(ProfilePage)
+export default connect(mapStateToProps, {addPost,updatePostText,setProfileData})(ProfileContainer)

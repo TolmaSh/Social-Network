@@ -1,13 +1,12 @@
-import { v1 } from "uuid"
+import {v1} from 'uuid'
 
 
 export type userDataType = {
-    id: number
-    name: string
-    birth: string
-    city: string
-    education: string
-    website: string
+    userId: number
+    fullName: string
+    aboutMe: string
+    contacts: { facebook:string }
+    photos: {small: string,large: string}
 }
 export type postType = {
     id: string
@@ -17,7 +16,8 @@ export type postType = {
 export type ProfilePageType = {
     newPost: string
     postList: postType[]
-    userData: userDataType[]
+    userData: userDataType | null
+
 }
 const initialState: ProfilePageType = {
     newPost: '',
@@ -27,16 +27,9 @@ const initialState: ProfilePageType = {
         {id: v1(), message: 'I`m good to , is you go at work today?', likesCount: 4},
         {id: v1(), message: 'No , today i go to restaurant to my friend birthday ', likesCount: 13}
     ],
-    userData: [{
-        id: 1,
-        name: 'Anatoly Movchan',
-        birth: '1 august',
-        city: 'Kiev',
-        education: 'IT-KAMASUTRA',
-        website: 'google.com'
-    }]
+    userData: null,
 }
-export const  profileReducer = (state: ProfilePageType = initialState, action: ProfileActionTypes) => {
+export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionTypes):ProfilePageType  => {
     switch (action.type) {
         case 'ADD-POST': {
             const newPost = {
@@ -44,25 +37,32 @@ export const  profileReducer = (state: ProfilePageType = initialState, action: P
                 message: state.newPost,
                 likesCount: 0
             }
-            return {...state,postList: [...state.postList,newPost],newPost: ''}
+            return {...state, postList: [...state.postList, newPost], newPost: ''}
         }
-        case 'UPDATE-POST': {
-            return {...state,...action.payload}
+        case 'UPDATE-POST':
+        case 'SET-PROFILE-DATA': {
+            return {...state, ...action.payload}
         }
+
+
         default:
             return state
     }
 }
 
 
-export type ProfileActionTypes = AddPostActionType | UpdatePostActionType
+export type ProfileActionTypes = AddPostActionType | UpdatePostActionType | SetProfileDataActionType
 
-type AddPostActionType = ReturnType<typeof addPostAC>
-type UpdatePostActionType = ReturnType<typeof updatePostTextAC>
-export const addPostAC = () => ({type: 'ADD-POST'} as const)
-export const updatePostTextAC = (newPost: string) => {
+type AddPostActionType = ReturnType<typeof addPost>
+type UpdatePostActionType = ReturnType<typeof updatePostText>
+type SetProfileDataActionType = ReturnType<typeof setProfileData>
+export const addPost = () => ({type: 'ADD-POST'} as const)
+export const updatePostText = (newPost: string) => {
     return {
         type: 'UPDATE-POST',
         payload: {newPost}
     } as const
+}
+export const setProfileData = (userData: userDataType) => {
+    return {type: 'SET-PROFILE-DATA', payload: {userData}} as const
 }

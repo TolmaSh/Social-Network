@@ -4,32 +4,32 @@ import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import {Typography} from '@mui/material';
 import {userDataType} from '../../../../store/profileReducer';
+import {Preloader} from '../../../Utils/Preloader';
 
 type UserPropsType = {
-    usersData: userDataType[]
+    usersData: userDataType
 }
 
 export const ProfileUser: React.FC<UserPropsType> = (props) => {
+    const {usersData} = props
     return (
-        <>
-            {props.usersData.map(u => {
-                return <Card variant="outlined" className={s.wrapper} key={u.id}>
-                    <Avatar alt={u.name} src="/static/images/avatar/1.jpg"/>
-                    <div className={s.userInfo}>
-                        <Typography sx={{fontWeight: 400}}
-                                    variant="h5"
-                                    component="h2"
-                                    gutterBottom>{u.name}
-                        </Typography>
-                        <ul>
-                            <li>Date of Birth: {u.birth}</li>
-                            <li>City: {u.city}</li>
-                            <li>Education: {u.city}</li>
-                            <li>Website:{u.website}</li>
-                        </ul>
-                    </div>
-                </Card>
-            })}
+        <> {!usersData ? <Preloader/> : <Card variant="outlined" className={s.wrapper} key={usersData.userId}>
+            <Avatar alt={usersData.fullName} src={usersData.photos.small}/>
+            <div className={s.userInfo}>
+                <Typography sx={{fontWeight: 400}}
+                            variant="h5"
+                            component="h2"
+                            gutterBottom>{usersData.fullName}
+                </Typography>
+                <ul>
+                    <li>Date of Birth: {usersData.aboutMe}</li>
+                    <li>City: {usersData.aboutMe}</li>
+                    <li>Education: {usersData.contacts.facebook}</li>
+                    <li>Website:{usersData.contacts.facebook}</li>
+                </ul>
+            </div>
+        </Card>}
+
         </>
     )
 
