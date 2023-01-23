@@ -1,14 +1,12 @@
 import {connect} from 'react-redux';
 import {rootReducerType} from '../../../store/store';
 import {
-    followUserAC,
-    setPageAC,
-    setTotalCountAC,
-    setUsersAC, toggleIsFetchingAC,
-    unFollowUserAC,
-    UserType
+    followUser,
+    setPage,
+    setTotalCount,
+    setUsers, toggleIsFetching,
+    unFollowUser,
 } from '../../../store/usersReducer';
-import {Dispatch} from 'redux';
 import React from 'react';
 import {Users} from './Users';
 import axios from 'axios';
@@ -30,7 +28,7 @@ class UsersContainer extends React.Component<any, any> {
 
     onPageChanged = (pageNum: number) => {
         this.props.toggleIsFetching(true)
-        this.props.setCurrentPage(pageNum)
+        this.props.setPage(pageNum)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNum}&count=${this.props.count}`)
             .then(response => {
                 this.props.toggleIsFetching(false)
@@ -46,8 +44,8 @@ class UsersContainer extends React.Component<any, any> {
                                                            onPageChanged={this.onPageChanged}
                                                            page={this.props.page}
                                                            users={this.props.users}
-                                                           follow={this.props.follow}
-                                                           unFollow={this.props.unFollow}
+                                                           follow={this.props.followUser}
+                                                           unFollow={this.props.unFollowUser}
             />}
         </>
     }
@@ -64,18 +62,7 @@ const MapStateToProps = (state: rootReducerType) => {
 
     }
 }
-const MapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        follow: (userID: string) => dispatch(followUserAC(userID)),
-        unFollow: (userID: string) => dispatch(unFollowUserAC(userID)),
-        setUsers: (users: UserType[]) => dispatch(setUsersAC(users)),
-        setTotalCount: (count: number) => dispatch(setTotalCountAC(count)),
-        setCurrentPage: (page: number) => dispatch(setPageAC(page)),
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(toggleIsFetchingAC(isFetching))
-        },
-    }
 
-}
-
-export default connect(MapStateToProps, MapDispatchToProps)(UsersContainer);
+export default connect(MapStateToProps, {
+    followUser,unFollowUser,setUsers,setTotalCount,setPage,toggleIsFetching
+})(UsersContainer);

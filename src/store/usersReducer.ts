@@ -50,12 +50,12 @@ export const usersReducer = (
     }
 };
 
-type FollowUserActionType = ReturnType<typeof followUserAC>;
-type UnFollowUserActionType = ReturnType<typeof unFollowUserAC>;
-type SetUsersActionType = ReturnType<typeof setUsersAC>;
-type SetTotalCountActionType = ReturnType<typeof setTotalCountAC>;
-type SetPageActionType = ReturnType<typeof setPageAC>;
-type ToggleIsFetchingActionType = ReturnType<typeof toggleIsFetchingAC>;
+type FollowUserActionType = ReturnType<typeof followUser>;
+type UnFollowUserActionType = ReturnType<typeof unFollowUser>;
+type SetUsersActionType = ReturnType<typeof setUsers>;
+type SetTotalCountActionType = ReturnType<typeof setTotalCount>;
+type SetPageActionType = ReturnType<typeof setPage>;
+type ToggleIsFetchingActionType = ReturnType<typeof toggleIsFetching>;
 export type UsersActionType =
     | FollowUserActionType
     | UnFollowUserActionType
@@ -64,37 +64,37 @@ export type UsersActionType =
     | SetPageActionType
     | ToggleIsFetchingActionType
 
-export const followUserAC = (userID: string) => {
+export const followUser = (userID: string) => {
     return {
         type: 'FOLLOW-USER',
         payload: {userID},
     } as const;
 };
-export const unFollowUserAC = (userID: string) => {
+export const unFollowUser = (userID: string) => {
     return {
         type: 'UNFOLLOW-USER',
         payload: {userID},
     } as const;
 };
 
-export const setUsersAC = (users: UserType[]) => {
+export const setUsers = (users: UserType[]) => {
     return {
         type: 'SET-USERS',
         payload: {users},
     } as const;
 };
-export const setTotalCountAC = (totalCount: number) => {
+export const setTotalCount = (totalCount: number) => {
     return {
         type: 'SET-TOTAL-COUNT',
         payload: {totalCount},
     } as const;
 };
-export const setPageAC = (page: number) => {
+export const setPage = (page: number) => {
     return {
         type: 'SET-PAGE',
         payload: {page},
     } as const;
 };
-export const toggleIsFetchingAC = (isFetching: boolean) => {
+export const toggleIsFetching = (isFetching: boolean) => {
     return {type: 'TOOGLE-IS-FETCHING', payload: {isFetching}} as const
 };
