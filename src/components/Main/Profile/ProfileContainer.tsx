@@ -6,10 +6,12 @@ import {ProfileUser} from './ProfileUser/ProfileUser';
 import {ProfilePosts} from './ProfilePosts/ProfilePosts';
 import React from 'react';
 import axios from 'axios';
+import {withRouter} from '../../Utils/WithRouter';
 
 class ProfileContainer extends React.Component<any, any> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+        const profileId = !this.props.params.profileId ? '2' : this.props.params.profileId;
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${profileId}`)
             .then(response => {
                 this.props.setProfileData(response.data)
             })
@@ -32,4 +34,4 @@ const mapStateToProps = (state: rootReducerType) => {
         newPost: state.profilePage.newPost
     }
 }
-export default connect(mapStateToProps, {addPost,updatePostText,setProfileData})(ProfileContainer)
+export default connect(mapStateToProps, {addPost,updatePostText,setProfileData})(withRouter(ProfileContainer))

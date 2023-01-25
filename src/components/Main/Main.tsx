@@ -17,11 +17,13 @@ export const Main = () => {
         <main className={s.main}>
             <div className={s.content}>
                 <Routes>
-                    <Route path="/"
-                           element={<ProfileContainer/>}/>
+                    <Route path="/" element={<ProfileContainer />}>
+                        <Route path="profile/:profileId" element={<ProfileContainer />} />
+                        <Route path="profile" element={<ProfileContainer />} />
+                    </Route>
                     <Route path="/Messages/*"
                            element={<MessagesContainer/>}/>
-                    <Route path="/UsersAPIComponent/*"
+                    <Route path="/Users/*"
                            element={<UsersContainer/>}/>
                     <Route path="/Gallery" element={<Gallery/>}/>
                     <Route path="/Settings" element={<Settings/>}/>

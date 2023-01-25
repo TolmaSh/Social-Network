@@ -15,9 +15,9 @@ type navListType = {
     way: string
 }
 const navList: Array<navListType> = [
-    {id: 1, item: 'Home', way: '/'},
+    {id: 1, item: 'Home', way: '/Profile'},
     {id: 2, item: 'Messages', way: '/Messages'},
-    {id: 3, item: 'Users', way: '/UsersAPIComponent'},
+    {id: 3, item: 'Users', way: '/Users'},
     {id: 4, item: 'Gallery', way: '/Gallery'},
     {id: 5, item: 'Settings', way: '/Settings'},
     {id: 6, item: 'Logout', way: '/logout'},

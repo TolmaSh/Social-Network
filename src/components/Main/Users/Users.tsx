@@ -3,9 +3,10 @@ import Card from '@mui/material/Card';
 import s from './Users.module.scss';
 import {UserType} from '../../../store/usersReducer';
 import {Avatar, Button} from '@mui/material';
+import {NavLink} from 'react-router-dom';
 
 type PropsType = {
-    totalCount:number
+    totalCount: number
     count: number
     onPageChanged: (pageNum: number) => void
     page: number
@@ -14,7 +15,7 @@ type PropsType = {
     unFollow: (userID: string) => void
 }
 export const Users = (props: PropsType) => {
-    const {totalCount,count,onPageChanged,page,users,follow,unFollow} = props
+    const {totalCount, count, onPageChanged, page, users, follow, unFollow} = props
     const totalPageCount = Math.ceil(totalCount / count);
     let pages: number[] = [];
     for (let i = 1; i <= totalPageCount; i++) {
@@ -52,36 +53,43 @@ export const Users = (props: PropsType) => {
 
     return (
         <div>
-        <Card variant="outlined">
-            <h2>Users</h2>
-        </Card>
-        <ul className={s.pagination}>
-            {pages.map(p => {
-                return <li onClick={() => onPageChanged(p)} key={p}>{page === p ? <b>{p}</b> : p}</li>
-            })}
-        </ul>
+            <Card variant="outlined">
+                <h2>Users</h2>
+            </Card>
+            <ul className={s.pagination}>
+                {pages.map(p => {
+                    return <li onClick={() => onPageChanged(p)} key={p}>{page === p ? <b>{p}</b> : p}</li>
+                })}
+            </ul>
 
-        <ul className={s.userList}>
-            {users.map((u: UserType) => {
-                const onClickFollow = () => {
-                    unFollow(u.id)
-                }
-                const onClickUnFollow = () => {
-                    follow(u.id)
-                }
-
-                return <li key={u.id} className={s.user}>
-                    <Avatar {...stringAvatar(u.name)} src={u.photos.large !== null ? u.photos.large : ''}
-                            alt={u.name}/>
-                    <h2 className={s.userName}>{u.name}</h2>
-                    <h3 className={s.userStatus}>{u.status ? u.status : 'User don`t have status'}</h3>
-                    {u.followed ?
-                        <Button onClick={onClickFollow} variant="contained">Unfollow</Button> :
-                        <Button onClick={onClickUnFollow} variant="contained">Follow</Button>
+            <ul className={s.userList}>
+                {users.map((u: UserType) => {
+                    const onClickFollow = () => {
+                        unFollow(u.id)
                     }
-                </li>
-            })}
-        </ul>
-    </div>
+                    const onClickUnFollow = () => {
+                        follow(u.id)
+                    }
+
+                    return <li key={u.id} className={s.user}>
+                        <Avatar {...stringAvatar(u.name)} src={u.photos.large !== null ? u.photos.large : ''}
+                                alt={u.name}/>
+                        <h2 className={s.userName}>{u.name}</h2>
+                        <h3 className={s.userStatus}>{u.status ? u.status : 'User don`t have status'}</h3>
+                        <div className={s.buttonsWrapper}>
+                            {u.followed ?
+                                <Button onClick={onClickFollow} variant="contained">Unfollow</Button> :
+                                <Button onClick={onClickUnFollow} variant="contained">Follow</Button>
+                            }
+                            <NavLink to={`/Profile/${u.id}`} className={s.profileBtn}>
+                                <Button variant="contained">Profile</Button>
+                            </NavLink>
+                        </div>
+
+
+                    </li>
+                })}
+            </ul>
+        </div>
     )
 };
