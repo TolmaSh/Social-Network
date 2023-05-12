@@ -1,16 +1,16 @@
 import React from 'react';
 import './App.css';
-import {Header} from "./components/Header/Header";
 import {Main} from "./components/Main/Main";
 import {Navigation} from "./components/Navigation/Navigation";
 import {HashRouter} from "react-router-dom";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 function App() {
 
     return (
         <HashRouter>
             <div className="wrapper">
-                <Header/>
+                <HeaderContainer/>
                 <Navigation/>
                 <Main />
             </div>

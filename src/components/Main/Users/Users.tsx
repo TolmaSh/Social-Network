@@ -4,6 +4,7 @@ import s from './Users.module.scss';
 import {UserType} from '../../../store/usersReducer';
 import {Avatar, Button} from '@mui/material';
 import {NavLink} from 'react-router-dom';
+import axios from "axios";
 
 type PropsType = {
     totalCount: number
@@ -65,10 +66,31 @@ export const Users = (props: PropsType) => {
             <ul className={s.userList}>
                 {users.map((u: UserType) => {
                     const onClickFollow = () => {
-                        unFollow(u.id)
+                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                            withCredentials: true,
+                            headers: {
+                                'API-KEY': '54a995e8-0f3d-4b8e-8429-66cab06331be'
+                            }
+
+                        })
+                            .then(response => {
+                                if (response.data.resultCode === 0) {
+                                    unFollow(u.id)
+                                }
+                            })
                     }
                     const onClickUnFollow = () => {
-                        follow(u.id)
+                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{}, {
+                            withCredentials: true,
+                            headers: {
+                                'API-KEY': '54a995e8-0f3d-4b8e-8429-66cab06331be'
+                            }
+                        })
+                            .then(response => {
+                                if (response.data.resultCode === 0) {
+                                    follow(u.id)
+                                }
+                            })
                     }
 
                     return <li key={u.id} className={s.user}>
