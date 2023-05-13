@@ -4,7 +4,7 @@ import s from './Users.module.scss';
 import {UserType} from '../../../store/usersReducer';
 import {Avatar, Button} from '@mui/material';
 import {NavLink} from 'react-router-dom';
-import axios from "axios";
+import {followAPI} from "../../../Api/api";
 
 type PropsType = {
     totalCount: number
@@ -66,33 +66,21 @@ export const Users = (props: PropsType) => {
             <ul className={s.userList}>
                 {users.map((u: UserType) => {
                     const onClickFollow = () => {
-                        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                            withCredentials: true,
-                            headers: {
-                                'API-KEY': '54a995e8-0f3d-4b8e-8429-66cab06331be'
-                            }
-
-                        })
-                            .then(response => {
-                                if (response.data.resultCode === 0) {
+                        followAPI.unFollowUser(u.id)
+                            .then(data => {
+                                if (data.resultCode === 0) {
                                     unFollow(u.id)
                                 }
                             })
                     }
                     const onClickUnFollow = () => {
-                        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,{}, {
-                            withCredentials: true,
-                            headers: {
-                                'API-KEY': '54a995e8-0f3d-4b8e-8429-66cab06331be'
-                            }
-                        })
-                            .then(response => {
-                                if (response.data.resultCode === 0) {
+                        followAPI.followUser(u.id)
+                            .then(data => {
+                                if (data.resultCode === 0) {
                                     follow(u.id)
                                 }
                             })
                     }
-
                     return <li key={u.id} className={s.user}>
                         <Avatar {...stringAvatar(u.name)} src={u.photos.large !== null ? u.photos.large : ''}
                                 alt={u.name}/>
@@ -100,8 +88,8 @@ export const Users = (props: PropsType) => {
                         <h3 className={s.userStatus}>{u.status ? u.status : 'User don`t have status'}</h3>
                         <div className={s.buttonsWrapper}>
                             {u.followed ?
-                                <Button onClick={onClickFollow} variant="contained">Unfollow</Button> :
-                                <Button onClick={onClickUnFollow} variant="contained">Follow</Button>
+                                <Button onClick={onClickFollow} variant="contained" size={"small"}>Unfollow</Button> :
+                                <Button onClick={onClickUnFollow} variant="contained" size={"small"}>Follow</Button>
                             }
                             <NavLink to={`/Profile/${u.id}`} className={s.profileBtn}>
                                 <Button variant="contained">Profile</Button>
