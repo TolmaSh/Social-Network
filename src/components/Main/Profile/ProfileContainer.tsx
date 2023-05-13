@@ -5,8 +5,8 @@ import s from './Profile.module.scss';
 import {ProfileUser} from './ProfileUser/ProfileUser';
 import {ProfilePosts} from './ProfilePosts/ProfilePosts';
 import React from 'react';
-import {withRouter} from '../../Utils/WithRouter';
-import {profileAPI} from "../../../Api/api";
+import {withRouter} from '../../../assets/helpers/hooks/WithRouter';
+import {profileAPI} from "../../../assets/API/api";
 
 class ProfileContainer extends React.Component<any, any> {
     componentDidMount() {

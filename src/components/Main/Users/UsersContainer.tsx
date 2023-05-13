@@ -9,8 +9,8 @@ import {
 } from '../../../store/usersReducer';
 import React from 'react';
 import {Users} from './Users';
-import {Preloader} from '../../Utils/Preloader';
-import {usersAPI} from "../../../Api/api";
+import {Preloader} from '../../../assets/helpers/Utils/Preloader';
+import {usersAPI} from "../../../assets/API/api";
 
 
 class UsersContainer extends React.Component<any, any> {

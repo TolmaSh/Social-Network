@@ -1,5 +1,5 @@
 import React from 'react';
-import preloader from '../../assets/preloader.gif'
+import preloader from '../../preloader.gif'
 
 export const Preloader = () => {
     return <div style={{display: 'flex',justifyContent: 'center', flexDirection: 'column', alignItems: 'center', marginTop: '50px'}}>

@@ -3,7 +3,7 @@ import {Header} from "./Header";
 import {connect} from "react-redux";
 import {rootReducerType} from "../../store/store";
 import {setAuthUserData} from "../../store/authReducer";
-import {authAPI} from "../../Api/api";
+import {authAPI} from "../../assets/API/api";
 
 class HeaderContainer extends React.Component<any, any> {
 

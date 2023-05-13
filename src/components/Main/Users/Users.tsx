@@ -4,7 +4,8 @@ import s from './Users.module.scss';
 import {UserType} from '../../../store/usersReducer';
 import {Avatar, Button} from '@mui/material';
 import {NavLink} from 'react-router-dom';
-import {followAPI} from "../../../Api/api";
+import {followAPI} from "../../../assets/API/api";
+import {stringAvatar} from "../../../assets/helpers/Utils/stringAvatar";
 
 type PropsType = {
     totalCount: number
@@ -23,33 +24,6 @@ export const Users = (props: PropsType) => {
         if (pages.length < 10) {
             pages.push(i);
         }
-    }
-    const stringToColor = (string: string) => {
-        let hash = 0;
-        let i;
-
-        /* eslint-disable no-bitwise */
-        for (i = 0; i < string.length; i += 1) {
-            hash = string.charCodeAt(i) + ((hash << 5) - hash);
-        }
-
-        let color = '#';
-
-        for (i = 0; i < 3; i += 1) {
-            const value = (hash >> (i * 8)) & 0xff;
-            color += `00${value.toString(16)}`.substr(-2);
-        }
-        return color;
-    };
-    const stringAvatar = (name: string) => {
-        return {
-            sx: {
-                bgcolor: stringToColor(name),
-                width: 56,
-                height: 56,
-            },
-            children: `${name.split(' ')[0][0].toUpperCase()}${name.split(' ')[0][1].toUpperCase()}`,
-        };
     }
 
     return (

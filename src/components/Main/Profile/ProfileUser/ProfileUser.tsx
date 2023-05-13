@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import {Typography} from '@mui/material';
 import {userDataType} from '../../../../store/profileReducer';
-import {Preloader} from '../../../Utils/Preloader';
+import {Preloader} from '../../../../assets/helpers/Utils/Preloader';
 
 type UserPropsType = {
     usersData: userDataType
