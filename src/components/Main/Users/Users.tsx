@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '@mui/material/Card';
 import s from './Users.module.scss';
-import {UserType} from '../../../store/usersReducer';
+import { UserType} from '../../../store/usersReducer';
 import {Avatar, Button} from '@mui/material';
 import {NavLink} from 'react-router-dom';
 import {followAPI} from "../../../assets/API/api";
@@ -15,6 +15,8 @@ type PropsType = {
     users: UserType[]
     follow: (userID: string) => void
     unFollow: (userID: string) => void
+    followingStatus: number[]
+    toggleIsFollowingStatus: (followingStatus: boolean, uId: number) => void
 }
 export const Users = (props: PropsType) => {
     const {totalCount, count, onPageChanged, page, users, follow, unFollow} = props
@@ -40,19 +42,23 @@ export const Users = (props: PropsType) => {
             <ul className={s.userList}>
                 {users.map((u: UserType) => {
                     const onClickFollow = () => {
+                        props.toggleIsFollowingStatus(true, +u.id)
                         followAPI.unFollowUser(u.id)
                             .then(data => {
                                 if (data.resultCode === 0) {
                                     unFollow(u.id)
                                 }
+                                props.toggleIsFollowingStatus(false, +u.id)
                             })
                     }
                     const onClickUnFollow = () => {
+                        props.toggleIsFollowingStatus(true, +u.id)
                         followAPI.followUser(u.id)
                             .then(data => {
                                 if (data.resultCode === 0) {
                                     follow(u.id)
                                 }
+                                props.toggleIsFollowingStatus(false, +u.id)
                             })
                     }
                     return <li key={u.id} className={s.user}>
@@ -62,8 +68,8 @@ export const Users = (props: PropsType) => {
                         <h3 className={s.userStatus}>{u.status ? u.status : 'User don`t have status'}</h3>
                         <div className={s.buttonsWrapper}>
                             {u.followed ?
-                                <Button onClick={onClickFollow} variant="contained" size={"small"}>Unfollow</Button> :
-                                <Button onClick={onClickUnFollow} variant="contained" size={"small"}>Follow</Button>
+                                <Button disabled={props.followingStatus.some(id => id === +u.id)} onClick={onClickFollow} variant="contained" size={"small"}>Unfollow</Button> :
+                                <Button disabled={props.followingStatus.some(id => id === +u.id)} onClick={onClickUnFollow} variant="contained" size={"small"}>Follow</Button>
                             }
                             <NavLink to={`/Profile/${u.id}`} className={s.profileBtn}>
                                 <Button variant="contained">Profile</Button>

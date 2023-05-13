@@ -4,7 +4,7 @@ import {
     followUser,
     setPage,
     setTotalCount,
-    setUsers, toggleIsFetching,
+    setUsers, toggleIsFetching, toggleIsFollowingStatus,
     unFollowUser,
 } from '../../../store/usersReducer';
 import React from 'react';
@@ -46,6 +46,8 @@ class UsersContainer extends React.Component<any, any> {
                                                            users={this.props.users}
                                                            follow={this.props.followUser}
                                                            unFollow={this.props.unFollowUser}
+                                                           followingStatus={this.props.followingStatus}
+                                                           toggleIsFollowingStatus={this.props.toggleIsFollowingStatus}
             />}
         </>
     }
@@ -59,10 +61,11 @@ const MapStateToProps = (state: rootReducerType) => {
         page: state.usersPage.page,
         totalCount: state.usersPage.totalCount,
         isFetching: state.usersPage.isFetching,
+        followingStatus: state.usersPage.followingStatus
 
     }
 }
 
 export default connect(MapStateToProps, {
-    followUser,unFollowUser,setUsers,setTotalCount,setPage,toggleIsFetching
+    followUser,unFollowUser,setUsers,setTotalCount,setPage,toggleIsFetching,toggleIsFollowingStatus
 })(UsersContainer);
